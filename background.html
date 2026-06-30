@@ -159,11 +159,8 @@
       letter-spacing: -.02em;
     }
 
-    .section-note {
-      margin: 6px 0 0;
-      color: var(--muted);
-    }
-
+    h3 { margin: 0 0 12px; }
+    .section-note { margin: 6px 0 0; color: var(--muted); }
     .mini-label {
       flex: 0 0 auto;
       color: #475569;
@@ -175,12 +172,7 @@
       font-weight: 800;
     }
 
-    .grid {
-      display: grid;
-      gap: 14px;
-    }
-    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid { display: grid; gap: 14px; }
     .grid.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
     .stat {
@@ -233,10 +225,7 @@
     }
     .rank-bar.warn span { background: linear-gradient(90deg, var(--orange), var(--red)); }
 
-    .skill-bars {
-      display: grid;
-      gap: 14px;
-    }
+    .skill-bars { display: grid; gap: 14px; }
     .skill-row {
       display: grid;
       grid-template-columns: 150px 1fr 52px;
@@ -244,7 +233,7 @@
       align-items: center;
     }
     .skill-name { font-weight: 800; }
-    .bar-track {
+    .bar-track, .score-track, .school-score-track {
       height: 14px;
       border-radius: 999px;
       background: #e5e7eb;
@@ -285,18 +274,31 @@
     .subject h3 { margin: 0 0 8px; font-size: 20px; }
     .subject p { margin: 0; color: var(--muted); font-size: 14px; }
 
-    .school-grid {
+    .private-grid, .school-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 14px;
     }
-    .school-card {
+    .private-card, .school-card {
       padding: 18px;
-      border-radius: 24px;
-      background: #f8fafc;
+      border-radius: 22px;
       border: 1px solid #e5e7eb;
+      background: #fff;
+    }
+    .private-card h3 { margin: 0 0 8px; }
+    .private-card ul { margin: 12px 0 0; padding-left: 20px; color: var(--muted); }
+    .commute {
+      margin-top: 14px;
+      padding: 12px;
+      border-radius: 16px;
+      background: #f8fafc;
+      font-weight: 900;
+    }
+
+    .school-card {
       position: relative;
       min-height: 260px;
+      background: #f8fafc;
     }
     .school-rank {
       position: absolute;
@@ -331,67 +333,22 @@
       font-weight: 900;
     }
 
-    .private-grid {
+    .score-two-col {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
     }
-    .private-card {
+    .score-panel {
       padding: 18px;
       border-radius: 22px;
-      border: 1px solid #e5e7eb;
-      background: #fff;
-    }
-    .private-card h3 { margin: 0 0 8px; }
-    .private-card ul { margin: 12px 0 0; padding-left: 20px; color: var(--muted); }
-    .commute {
-      margin-top: 14px;
-      padding: 12px;
-      border-radius: 16px;
-      background: #f8fafc;
-      font-weight: 900;
-    }
-
-    .score-ladder {
-      display: grid;
-      gap: 10px;
-    }
-    .score-row {
-      display: grid;
-      grid-template-columns: 78px 90px 1fr 80px;
-      gap: 12px;
-      align-items: center;
-      padding: 12px;
-      border-radius: 18px;
       background: #f8fafc;
       border: 1px solid #e5e7eb;
+      min-width: 0;
     }
-    .grade {
-      font-weight: 950;
-      font-size: 18px;
-      color: #111827;
-    }
-    .points { color: var(--muted); font-weight: 800; }
-    .score-track {
-      height: 14px;
-      border-radius: 999px;
-      background: #e5e7eb;
-      overflow: hidden;
-    }
-    .score-fill {
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--green), var(--blue), var(--purple));
-    }
-    .score-range { text-align: right; font-weight: 800; color: #475569; }
-
-    .school-score-chart {
+    .school-score-chart, .score-ladder { display: grid; gap: 10px; }
+    .school-score-row, .score-row {
       display: grid;
-      gap: 10px;
-    }
-    .school-score-row {
-      display: grid;
-      grid-template-columns: 96px 78px 1fr 82px;
       gap: 12px;
       align-items: center;
       padding: 12px;
@@ -399,10 +356,11 @@
       background: #ffffff;
       border: 1px solid #e5e7eb;
     }
-    .score-band {
-      font-weight: 950;
-      color: #111827;
-    }
+    .school-score-row { grid-template-columns: 96px 78px 1fr 82px; }
+    .score-row { grid-template-columns: 78px 72px 1fr 70px; }
+    .score-band, .grade { font-weight: 950; color: #111827; }
+    .grade { font-size: 18px; }
+    .points { color: var(--muted); font-weight: 800; }
     .score-level {
       display: inline-flex;
       justify-content: center;
@@ -417,23 +375,20 @@
     }
     .score-level.low { background: linear-gradient(135deg, #94a3b8, #64748b); }
     .score-level.mid { background: linear-gradient(135deg, var(--orange), var(--pink)); }
-    .school-score-track {
-      height: 14px;
-      border-radius: 999px;
-      background: #e5e7eb;
-      overflow: hidden;
-    }
     .school-score-fill {
       height: 100%;
       border-radius: inherit;
       background: linear-gradient(90deg, var(--orange), var(--blue));
     }
-    .score-desc { text-align: right; color: var(--muted); font-weight: 800; }
-
-    .combo-chart {
-      display: grid;
-      gap: 12px;
+    .score-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--green), var(--blue), var(--purple));
     }
+    .score-range, .score-desc { text-align: right; font-weight: 800; color: #475569; }
+
+    .combo-section { margin-top: 22px; }
+    .combo-chart { display: grid; gap: 12px; }
     .combo-row {
       display: grid;
       grid-template-columns: 95px 1fr 62px;
@@ -477,76 +432,6 @@
     .strategy h3 { margin: 8px 0 6px; font-size: 17px; }
     .strategy p { margin: 0; color: var(--muted); font-size: 14px; }
 
-    .flow {
-      display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: 10px;
-    }
-    .flow-step {
-      position: relative;
-      padding: 16px;
-      border-radius: 20px;
-      background: #f8fafc;
-      border: 1px solid #e5e7eb;
-      min-height: 130px;
-    }
-    .flow-step::after {
-      content: "→";
-      position: absolute;
-      right: -12px;
-      top: 44%;
-      color: #94a3b8;
-      font-weight: 950;
-    }
-    .flow-step:last-child::after { display: none; }
-    .flow-step .num {
-      width: 30px;
-      height: 30px;
-      display: grid;
-      place-items: center;
-      border-radius: 12px;
-      color: white;
-      background: var(--purple);
-      font-weight: 950;
-      margin-bottom: 10px;
-    }
-    .flow-step h3 { margin: 0 0 6px; font-size: 16px; }
-    .flow-step p { margin: 0; color: var(--muted); font-size: 13px; }
-
-    .rule-cards {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-    }
-    .rule-card {
-      padding: 18px;
-      border-radius: 22px;
-      background: #f8fafc;
-      border: 1px solid #e5e7eb;
-    }
-    .rule-card h3 { margin: 0 0 8px; }
-    .rule-card p { margin: 0; color: var(--muted); }
-
-    .output-wheel {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 12px;
-    }
-    .output-item {
-      padding: 18px;
-      border-radius: 999px;
-      aspect-ratio: 1/1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background: linear-gradient(135deg, rgba(47,128,237,.12), rgba(124,58,237,.10));
-      border: 1px solid #dbeafe;
-    }
-    .output-item strong { font-size: 18px; }
-    .output-item span { margin-top: 5px; color: var(--muted); font-size: 13px; }
-
     .footer-note {
       margin-top: 24px;
       padding: 18px;
@@ -557,38 +442,15 @@
       font-weight: 800;
     }
 
-    .source-note {
-      margin-top: 14px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .desktop-table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 700px;
-      font-size: 14px;
-    }
-    .table-scroll {
-      overflow-x: auto;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-    }
-    th, td {
-      padding: 12px;
-      border-bottom: 1px solid var(--line);
-      text-align: left;
-      vertical-align: top;
-    }
-    th { background: #f8fafc; }
+    .source-note { margin-top: 14px; color: var(--muted); font-size: 13px; }
 
     @media (max-width: 980px) {
-      .grid.two, .grid.three, .grid.four,
-      .rank-visual, .school-grid, .private-grid,
-      .subject-map, .strategy-map, .flow, .rule-cards, .output-wheel {
+      .grid.four, .rank-visual, .school-grid, .private-grid,
+      .subject-map, .strategy-map, .score-two-col {
         grid-template-columns: 1fr 1fr;
       }
-      .flow-step::after { display: none; }
+      .school-score-row, .score-row { grid-template-columns: 1fr; }
+      .score-range, .score-desc { text-align: left; }
     }
 
     @media (max-width: 640px) {
@@ -596,16 +458,12 @@
       header.hero { padding: 24px; border-radius: 26px; }
       section.card { padding: 18px; }
       .topbar { align-items: flex-start; flex-direction: column; }
-      .grid.two, .grid.three, .grid.four,
-      .rank-visual, .school-grid, .private-grid,
-      .subject-map, .strategy-map, .flow, .rule-cards, .output-wheel {
+      .grid.four, .rank-visual, .school-grid, .private-grid,
+      .subject-map, .strategy-map, .score-two-col {
         grid-template-columns: 1fr;
       }
-      .skill-row, .score-row, .school-score-row, .combo-row {
-        grid-template-columns: 1fr;
-      }
-      .score-range, .score-desc, .combo-score { text-align: left; }
-      .output-item { aspect-ratio: auto; border-radius: 22px; min-height: 110px; }
+      .skill-row, .combo-row { grid-template-columns: 1fr; }
+      .bar-value, .combo-score { text-align: left; }
     }
   </style>
 </head>
@@ -622,8 +480,8 @@
       <nav class="quick-nav" aria-label="頁面導覽">
         <a href="#profile">學習背景</a>
         <a href="#exam">會考能力地圖</a>
-        <a href="#schools">高中目標</a>
         <a href="#private">私校評估</a>
+        <a href="#schools">高中目標</a>
         <a href="#scores">分數對照</a>
         <a href="#strategy">短期策略</a>
       </nav>
@@ -686,6 +544,22 @@
       </div>
     </section>
 
+    <section class="card" id="private">
+      <div class="section-head">
+        <div>
+          <h2>私校評估卡</h2>
+          <p class="section-note">先用「管理節奏、升學導向、通勤」三個角度保留比較。</p>
+        </div>
+        <span class="mini-label">Private Schools</span>
+      </div>
+      <div class="private-grid">
+        <article class="private-card"><h3>道明國中／高中</h3><ul><li>私立，升學導向強</li><li>管理嚴謹、進度快</li><li>適合需要明確節奏者</li></ul><div class="commute">通勤約 30～40 分鐘</div></article>
+        <article class="private-card"><h3>中山國中／高中</h3><ul><li>公立，學風穩定</li><li>節奏較平均</li><li>需靠學生自我努力提升</li></ul><div class="commute">通勤約 20～30 分鐘</div></article>
+        <article class="private-card"><h3>明誠中學／高中</h3><ul><li>私立，升學與品格並重</li><li>課程安排完整</li><li>重視基礎與長期培養</li></ul><div class="commute">通勤約 30～40 分鐘</div></article>
+        <article class="private-card"><h3>復華中學／高中</h3><ul><li>私立，重視紀律與升學</li><li>課業要求明確</li><li>適合需要嚴格管理者</li></ul><div class="commute">通勤約 30～45 分鐘</div></article>
+      </div>
+    </section>
+
     <section class="card" id="schools">
       <div class="section-head">
         <div>
@@ -726,62 +600,52 @@
       </div>
     </section>
 
-    <section class="card" id="private">
-      <div class="section-head">
-        <div>
-          <h2>私校評估卡</h2>
-          <p class="section-note">先用「管理節奏、升學導向、通勤」三個角度保留比較。</p>
-        </div>
-        <span class="mini-label">Private Schools</span>
-      </div>
-      <div class="private-grid">
-        <article class="private-card"><h3>道明國中／高中</h3><ul><li>私立，升學導向強</li><li>管理嚴謹、進度快</li><li>適合需要明確節奏者</li></ul><div class="commute">通勤約 30～40 分鐘</div></article>
-        <article class="private-card"><h3>中山國中／高中</h3><ul><li>公立，學風穩定</li><li>節奏較平均</li><li>需靠學生自我努力提升</li></ul><div class="commute">通勤約 20～30 分鐘</div></article>
-        <article class="private-card"><h3>明誠中學／高中</h3><ul><li>私立，升學與品格並重</li><li>課程安排完整</li><li>重視基礎與長期培養</li></ul><div class="commute">通勤約 30～40 分鐘</div></article>
-        <article class="private-card"><h3>復華中學／高中</h3><ul><li>私立，重視紀律與升學</li><li>課業要求明確</li><li>適合需要嚴格管理者</li></ul><div class="commute">通勤約 30～45 分鐘</div></article>
-      </div>
-    </section>
-
     <section class="card" id="scores">
       <div class="section-head">
         <div>
-          <h2>會考等級與校內分數對照</h2>
-          <p class="section-note">保留 C、B、B+、B++、A、A+、A++ 分類，並把學校常見 80 幾分對應清楚。</p>
+          <h2>會考分數與積分系統</h2>
+          <p class="section-note">保留 C、B、B+、B++、A、A+、A++ 分類，並把校內分數與會考積分並排比較。</p>
         </div>
         <span class="mini-label">Score System</span>
       </div>
 
-      <h3 style="margin: 0 0 12px;">學校分數 × 會考等級對照</h3>
-      <div class="school-score-chart">
-        <div class="school-score-row"><div class="score-band">70 以下</div><div class="score-level low">C</div><div class="school-score-track"><div class="school-score-fill" style="width: 35%"></div></div><div class="score-desc">需補強</div></div>
-        <div class="school-score-row"><div class="score-band">70–74</div><div class="score-level low">B</div><div class="school-score-track"><div class="school-score-fill" style="width: 50%"></div></div><div class="score-desc">基礎</div></div>
-        <div class="school-score-row"><div class="score-band">75–79</div><div class="score-level mid">B+</div><div class="school-score-track"><div class="school-score-fill" style="width: 62%"></div></div><div class="score-desc">中等</div></div>
-        <div class="school-score-row"><div class="score-band">80–84</div><div class="score-level mid">B++</div><div class="school-score-track"><div class="school-score-fill" style="width: 74%"></div></div><div class="score-desc">中上</div></div>
-        <div class="school-score-row"><div class="score-band">85–89</div><div class="score-level">A</div><div class="school-score-track"><div class="school-score-fill" style="width: 84%"></div></div><div class="score-desc">穩定</div></div>
-        <div class="school-score-row"><div class="score-band">90–94</div><div class="score-level">A+</div><div class="school-score-track"><div class="school-score-fill" style="width: 92%"></div></div><div class="score-desc">優秀</div></div>
-        <div class="school-score-row"><div class="score-band">95 以上</div><div class="score-level">A++</div><div class="school-score-track"><div class="school-score-fill" style="width: 100%"></div></div><div class="score-desc">頂尖</div></div>
-      </div>
-      <p class="source-note">提醒：此表是 Ann AI 內部學習規劃用的簡化對照，正式會考等級仍以當年度國中教育會考官方標準為準。</p>
+      <div class="score-two-col">
+        <div class="score-panel">
+          <h3>會考等級與校內分數對照</h3>
+          <div class="school-score-chart">
+            <div class="school-score-row"><div class="score-band">70 以下</div><div class="score-level low">C</div><div class="school-score-track"><div class="school-score-fill" style="width: 35%"></div></div><div class="score-desc">需補強</div></div>
+            <div class="school-score-row"><div class="score-band">70–74</div><div class="score-level low">B</div><div class="school-score-track"><div class="school-score-fill" style="width: 50%"></div></div><div class="score-desc">基礎</div></div>
+            <div class="school-score-row"><div class="score-band">75–79</div><div class="score-level mid">B+</div><div class="school-score-track"><div class="school-score-fill" style="width: 62%"></div></div><div class="score-desc">中等</div></div>
+            <div class="school-score-row"><div class="score-band">80–84</div><div class="score-level mid">B++</div><div class="school-score-track"><div class="school-score-fill" style="width: 74%"></div></div><div class="score-desc">中上</div></div>
+            <div class="school-score-row"><div class="score-band">85–89</div><div class="score-level">A</div><div class="school-score-track"><div class="school-score-fill" style="width: 84%"></div></div><div class="score-desc">穩定</div></div>
+            <div class="school-score-row"><div class="score-band">90–94</div><div class="score-level">A+</div><div class="school-score-track"><div class="school-score-fill" style="width: 92%"></div></div><div class="score-desc">優秀</div></div>
+            <div class="school-score-row"><div class="score-band">95 以上</div><div class="score-level">A++</div><div class="school-score-track"><div class="school-score-fill" style="width: 100%"></div></div><div class="score-desc">頂尖</div></div>
+          </div>
+          <p class="source-note">提醒：此表是 Ann AI 內部學習規劃用的簡化對照，正式會考等級仍以當年度國中教育會考官方標準為準。</p>
+        </div>
 
-      <div style="height: 22px"></div>
-      <h3 style="margin: 0 0 12px;">會考等級與積分階梯</h3>
-      <div class="score-ladder">
-        <div class="score-row"><div class="grade">A++</div><div class="points">7 分</div><div class="score-track"><div class="score-fill" style="width: 100%"></div></div><div class="score-range">95+</div></div>
-        <div class="score-row"><div class="grade">A+</div><div class="points">6 分</div><div class="score-track"><div class="score-fill" style="width: 88%"></div></div><div class="score-range">90–94</div></div>
-        <div class="score-row"><div class="grade">A</div><div class="points">5 分</div><div class="score-track"><div class="score-fill" style="width: 76%"></div></div><div class="score-range">85–89</div></div>
-        <div class="score-row"><div class="grade">B++</div><div class="points">4 分</div><div class="score-track"><div class="score-fill" style="width: 64%"></div></div><div class="score-range">80–84</div></div>
-        <div class="score-row"><div class="grade">B+</div><div class="points">3 分</div><div class="score-track"><div class="score-fill" style="width: 52%"></div></div><div class="score-range">75–79</div></div>
-        <div class="score-row"><div class="grade">B</div><div class="points">2 分</div><div class="score-track"><div class="score-fill" style="width: 40%"></div></div><div class="score-range">70–74</div></div>
-        <div class="score-row"><div class="grade">C</div><div class="points">1 分</div><div class="score-track"><div class="score-fill" style="width: 25%"></div></div><div class="score-range">70 以下</div></div>
+        <div class="score-panel">
+          <h3>會考等級與積分階梯</h3>
+          <div class="score-ladder">
+            <div class="score-row"><div class="grade">A++</div><div class="points">7 分</div><div class="score-track"><div class="score-fill" style="width: 100%"></div></div><div class="score-range">95+</div></div>
+            <div class="score-row"><div class="grade">A+</div><div class="points">6 分</div><div class="score-track"><div class="score-fill" style="width: 88%"></div></div><div class="score-range">90–94</div></div>
+            <div class="score-row"><div class="grade">A</div><div class="points">5 分</div><div class="score-track"><div class="score-fill" style="width: 76%"></div></div><div class="score-range">85–89</div></div>
+            <div class="score-row"><div class="grade">B++</div><div class="points">4 分</div><div class="score-track"><div class="score-fill" style="width: 64%"></div></div><div class="score-range">80–84</div></div>
+            <div class="score-row"><div class="grade">B+</div><div class="points">3 分</div><div class="score-track"><div class="score-fill" style="width: 52%"></div></div><div class="score-range">75–79</div></div>
+            <div class="score-row"><div class="grade">B</div><div class="points">2 分</div><div class="score-track"><div class="score-fill" style="width: 40%"></div></div><div class="score-range">70–74</div></div>
+            <div class="score-row"><div class="grade">C</div><div class="points">1 分</div><div class="score-track"><div class="score-fill" style="width: 25%"></div></div><div class="score-range">70 以下</div></div>
+          </div>
+        </div>
       </div>
 
-      <div style="height: 22px"></div>
-      <h3 style="margin: 0 0 12px;">常見積分組合</h3>
-      <div class="combo-chart">
-        <div class="combo-row"><strong>5A</strong><div class="combo-track"><div class="combo-fill" style="width: 71%">5×5</div></div><div class="combo-score">25</div></div>
-        <div class="combo-row"><strong>5A+</strong><div class="combo-track"><div class="combo-fill" style="width: 86%">5×6</div></div><div class="combo-score">30</div></div>
-        <div class="combo-row"><strong>5A++</strong><div class="combo-track"><div class="combo-fill" style="width: 100%">5×7</div></div><div class="combo-score">35</div></div>
-        <div class="combo-row"><strong>混合</strong><div class="combo-track"><div class="combo-fill" style="width: 89%">2A++ + 2A+ + 1A</div></div><div class="combo-score">31</div></div>
+      <div class="combo-section">
+        <h3>常見積分組合</h3>
+        <div class="combo-chart">
+          <div class="combo-row"><strong>5A</strong><div class="combo-track"><div class="combo-fill" style="width: 71%">5×5</div></div><div class="combo-score">25</div></div>
+          <div class="combo-row"><strong>5A+</strong><div class="combo-track"><div class="combo-fill" style="width: 86%">5×6</div></div><div class="combo-score">30</div></div>
+          <div class="combo-row"><strong>5A++</strong><div class="combo-track"><div class="combo-fill" style="width: 100%">5×7</div></div><div class="combo-score">35</div></div>
+          <div class="combo-row"><strong>混合</strong><div class="combo-track"><div class="combo-fill" style="width: 89%">2A++ + 2A+ + 1A</div></div><div class="combo-score">31</div></div>
+        </div>
       </div>
     </section>
 
