@@ -1,0 +1,809 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ann AI｜學習背景與目標整理</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --blue: #2f80ed;
+      --purple: #7c3aed;
+      --pink: #ec4899;
+      --orange: #f59e0b;
+      --green: #10b981;
+      --red: #ef4444;
+      --shadow: 0 18px 45px rgba(17, 24, 39, .08);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(47,128,237,.16), transparent 30%),
+        radial-gradient(circle at top right, rgba(236,72,153,.12), transparent 34%),
+        var(--bg);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 64px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(229,231,235,.9);
+      box-shadow: 0 8px 22px rgba(17,24,39,.06);
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      background: rgba(124,58,237,.10);
+      color: #5b21b6;
+    }
+
+    header.hero {
+      position: relative;
+      overflow: hidden;
+      padding: 34px;
+      border-radius: 32px;
+      background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(255,255,255,.76));
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.9);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      top: -110px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(47,128,237,.22), rgba(236,72,153,.18));
+      pointer-events: none;
+    }
+
+    h1 {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 12px;
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1.08;
+      letter-spacing: -.04em;
+    }
+
+    .hero p {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .quick-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quick-nav a {
+      text-decoration: none;
+      background: #f8fafc;
+      border: 1px solid var(--line);
+      color: #334155;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    section.card {
+      margin-top: 22px;
+      padding: 26px;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.94);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.82);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(23px, 3vw, 32px);
+      letter-spacing: -.02em;
+    }
+
+    .section-note {
+      margin: 6px 0 0;
+      color: var(--muted);
+    }
+
+    .mini-label {
+      flex: 0 0 auto;
+      color: #475569;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .grid {
+      display: grid;
+      gap: 14px;
+    }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .stat {
+      padding: 18px;
+      border-radius: 20px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+    }
+    .stat .k { color: var(--muted); font-size: 14px; font-weight: 700; }
+    .stat .v { margin-top: 6px; font-size: 22px; font-weight: 900; letter-spacing: -.02em; }
+    .stat .s { margin-top: 5px; color: var(--muted); font-size: 14px; }
+
+    .rank-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .rank-card {
+      border-radius: 22px;
+      padding: 18px;
+      background: linear-gradient(180deg, #fff, #f8fafc);
+      border: 1px solid #e5e7eb;
+    }
+
+    .rank-number {
+      font-size: 42px;
+      font-weight: 950;
+      letter-spacing: -.05em;
+      line-height: 1;
+    }
+    .rank-number.good { color: var(--blue); }
+    .rank-number.warn { color: var(--orange); }
+    .rank-caption { margin-top: 8px; color: var(--muted); font-weight: 700; }
+
+    .rank-bar {
+      position: relative;
+      height: 16px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      margin-top: 18px;
+      overflow: hidden;
+    }
+    .rank-bar span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), var(--purple));
+    }
+    .rank-bar.warn span { background: linear-gradient(90deg, var(--orange), var(--red)); }
+
+    .skill-bars {
+      display: grid;
+      gap: 14px;
+    }
+    .skill-row {
+      display: grid;
+      grid-template-columns: 150px 1fr 52px;
+      gap: 12px;
+      align-items: center;
+    }
+    .skill-name { font-weight: 800; }
+    .bar-track {
+      height: 14px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--green), var(--blue));
+    }
+    .bar-fill.mid { background: linear-gradient(90deg, var(--orange), var(--pink)); }
+    .bar-value { color: var(--muted); font-weight: 800; font-size: 13px; text-align: right; }
+
+    .subject-map {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .subject {
+      position: relative;
+      min-height: 140px;
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid #e5e7eb;
+      background: linear-gradient(180deg, #fff, #f8fafc);
+      overflow: hidden;
+    }
+    .subject::after {
+      content: "";
+      position: absolute;
+      right: -26px;
+      bottom: -26px;
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      background: rgba(47,128,237,.10);
+    }
+    .subject h3 { margin: 0 0 8px; font-size: 20px; }
+    .subject p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .school-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .school-card {
+      padding: 18px;
+      border-radius: 24px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      position: relative;
+      min-height: 260px;
+    }
+    .school-rank {
+      position: absolute;
+      right: 16px;
+      top: 14px;
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 950;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+    }
+    .school-card h3 { margin: 0 44px 10px 0; font-size: 21px; }
+    .school-card .tagline { color: var(--muted); font-weight: 700; min-height: 46px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .chip {
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: white;
+      border: 1px solid #e5e7eb;
+      font-size: 12px;
+      font-weight: 800;
+      color: #475569;
+    }
+    .threshold {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed #d1d5db;
+      color: #334155;
+      font-weight: 900;
+    }
+
+    .private-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .private-card {
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid #e5e7eb;
+      background: #fff;
+    }
+    .private-card h3 { margin: 0 0 8px; }
+    .private-card ul { margin: 12px 0 0; padding-left: 20px; color: var(--muted); }
+    .commute {
+      margin-top: 14px;
+      padding: 12px;
+      border-radius: 16px;
+      background: #f8fafc;
+      font-weight: 900;
+    }
+
+    .score-ladder {
+      display: grid;
+      gap: 10px;
+    }
+    .score-row {
+      display: grid;
+      grid-template-columns: 78px 90px 1fr 80px;
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      border-radius: 18px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+    }
+    .grade {
+      font-weight: 950;
+      font-size: 18px;
+      color: #111827;
+    }
+    .points { color: var(--muted); font-weight: 800; }
+    .score-track {
+      height: 14px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      overflow: hidden;
+    }
+    .score-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--green), var(--blue), var(--purple));
+    }
+    .score-range { text-align: right; font-weight: 800; color: #475569; }
+
+    .school-score-chart {
+      display: grid;
+      gap: 10px;
+    }
+    .school-score-row {
+      display: grid;
+      grid-template-columns: 96px 78px 1fr 82px;
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      border-radius: 18px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+    }
+    .score-band {
+      font-weight: 950;
+      color: #111827;
+    }
+    .score-level {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 58px;
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 14px;
+      font-weight: 950;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+    }
+    .score-level.low { background: linear-gradient(135deg, #94a3b8, #64748b); }
+    .score-level.mid { background: linear-gradient(135deg, var(--orange), var(--pink)); }
+    .school-score-track {
+      height: 14px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      overflow: hidden;
+    }
+    .school-score-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--orange), var(--blue));
+    }
+    .score-desc { text-align: right; color: var(--muted); font-weight: 800; }
+
+    .combo-chart {
+      display: grid;
+      gap: 12px;
+    }
+    .combo-row {
+      display: grid;
+      grid-template-columns: 95px 1fr 62px;
+      gap: 12px;
+      align-items: center;
+    }
+    .combo-row strong { font-size: 17px; }
+    .combo-track {
+      height: 26px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      overflow: hidden;
+    }
+    .combo-fill {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 10px;
+      height: 100%;
+      color: white;
+      font-size: 13px;
+      font-weight: 900;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), var(--purple));
+    }
+    .combo-score { text-align: right; font-weight: 900; }
+
+    .strategy-map {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .strategy {
+      padding: 16px;
+      border-radius: 20px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      min-height: 150px;
+    }
+    .strategy .icon { font-size: 26px; }
+    .strategy h3 { margin: 8px 0 6px; font-size: 17px; }
+    .strategy p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .flow-step {
+      position: relative;
+      padding: 16px;
+      border-radius: 20px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      min-height: 130px;
+    }
+    .flow-step::after {
+      content: "→";
+      position: absolute;
+      right: -12px;
+      top: 44%;
+      color: #94a3b8;
+      font-weight: 950;
+    }
+    .flow-step:last-child::after { display: none; }
+    .flow-step .num {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: white;
+      background: var(--purple);
+      font-weight: 950;
+      margin-bottom: 10px;
+    }
+    .flow-step h3 { margin: 0 0 6px; font-size: 16px; }
+    .flow-step p { margin: 0; color: var(--muted); font-size: 13px; }
+
+    .rule-cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .rule-card {
+      padding: 18px;
+      border-radius: 22px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+    }
+    .rule-card h3 { margin: 0 0 8px; }
+    .rule-card p { margin: 0; color: var(--muted); }
+
+    .output-wheel {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .output-item {
+      padding: 18px;
+      border-radius: 999px;
+      aspect-ratio: 1/1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(47,128,237,.12), rgba(124,58,237,.10));
+      border: 1px solid #dbeafe;
+    }
+    .output-item strong { font-size: 18px; }
+    .output-item span { margin-top: 5px; color: var(--muted); font-size: 13px; }
+
+    .footer-note {
+      margin-top: 24px;
+      padding: 18px;
+      border-radius: 22px;
+      background: #111827;
+      color: #fff;
+      text-align: center;
+      font-weight: 800;
+    }
+
+    .source-note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .desktop-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 700px;
+      font-size: 14px;
+    }
+    .table-scroll {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #f8fafc; }
+
+    @media (max-width: 980px) {
+      .grid.two, .grid.three, .grid.four,
+      .rank-visual, .school-grid, .private-grid,
+      .subject-map, .strategy-map, .flow, .rule-cards, .output-wheel {
+        grid-template-columns: 1fr 1fr;
+      }
+      .flow-step::after { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      .page { width: min(100% - 22px, 1180px); padding-top: 16px; }
+      header.hero { padding: 24px; border-radius: 26px; }
+      section.card { padding: 18px; }
+      .topbar { align-items: flex-start; flex-direction: column; }
+      .grid.two, .grid.three, .grid.four,
+      .rank-visual, .school-grid, .private-grid,
+      .subject-map, .strategy-map, .flow, .rule-cards, .output-wheel {
+        grid-template-columns: 1fr;
+      }
+      .skill-row, .score-row, .school-score-row, .combo-row {
+        grid-template-columns: 1fr;
+      }
+      .score-range, .score-desc, .combo-score { text-align: left; }
+      .output-item { aspect-ratio: auto; border-radius: 22px; min-height: 110px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="topbar">
+      <a class="back-link" href="index.html">← 回首頁</a>
+      <span class="badge">Ann AI 專案設定頁</span>
+    </div>
+
+    <header class="hero">
+      <h1>Ann AI｜學習背景與目標整理</h1>
+      <p>這個頁面是 Ann AI 的學習背景設定，用來幫助 AI、媽媽與 Ann 理解目前的學習狀態、升學目標與系統設計方向。重點不是一次變強，而是把學習變得比較清楚、比較好記、比較能持續。</p>
+      <nav class="quick-nav" aria-label="頁面導覽">
+        <a href="#profile">學習背景</a>
+        <a href="#exam">會考能力地圖</a>
+        <a href="#schools">高中目標</a>
+        <a href="#private">私校評估</a>
+        <a href="#scores">分數對照</a>
+        <a href="#strategy">短期策略</a>
+      </nav>
+    </header>
+
+    <section class="card" id="profile">
+      <div class="section-head">
+        <div>
+          <h2>學習狀態儀表板</h2>
+          <p class="section-note">用少量指標快速理解 Ann 目前狀態。</p>
+        </div>
+        <span class="mini-label">Profile</span>
+      </div>
+
+      <div class="grid four">
+        <div class="stat"><div class="k">身分</div><div class="v">國二 → 國三</div><div class="s">五福國中學生</div></div>
+        <div class="stat"><div class="k">主要考試</div><div class="v">國中會考</div><div class="s">目前主要升學考試</div></div>
+        <div class="stat"><div class="k">班級</div><div class="v">資優班</div><div class="s">約 30 人</div></div>
+        <div class="stat"><div class="k">英文程度</div><div class="v">GEPT 初級</div><div class="s">先強化單字與閱讀</div></div>
+      </div>
+
+      <div style="height: 16px"></div>
+      <div class="rank-visual">
+        <div class="rank-card">
+          <div class="rank-number good">150</div>
+          <div class="rank-caption">過去校排名約 150 名</div>
+          <div class="rank-bar"><span style="width: 66%"></span></div>
+        </div>
+        <div class="rank-card">
+          <div class="rank-number warn">300</div>
+          <div class="rank-caption">目前校排名約 300 名</div>
+          <div class="rank-bar warn"><span style="width: 36%"></span></div>
+        </div>
+      </div>
+
+      <div style="height: 20px"></div>
+      <div class="skill-bars" aria-label="學習特質視覺化">
+        <div class="skill-row"><div class="skill-name">理解力</div><div class="bar-track"><div class="bar-fill" style="width: 88%"></div></div><div class="bar-value">高</div></div>
+        <div class="skill-row"><div class="skill-name">好奇心</div><div class="bar-track"><div class="bar-fill" style="width: 90%"></div></div><div class="bar-value">高</div></div>
+        <div class="skill-row"><div class="skill-name">實作興趣</div><div class="bar-track"><div class="bar-fill" style="width: 84%"></div></div><div class="bar-value">高</div></div>
+        <div class="skill-row"><div class="skill-name">反覆練習耐受度</div><div class="bar-track"><div class="bar-fill mid" style="width: 38%"></div></div><div class="bar-value">低</div></div>
+        <div class="skill-row"><div class="skill-name">目前學習動機</div><div class="bar-track"><div class="bar-fill mid" style="width: 42%"></div></div><div class="bar-value">下降</div></div>
+      </div>
+    </section>
+
+    <section class="card" id="exam">
+      <div class="section-head">
+        <div>
+          <h2>國中會考能力地圖</h2>
+          <p class="section-note">把五科轉成能力地圖，方便 AI 後續產生任務。</p>
+        </div>
+        <span class="mini-label">Exam Map</span>
+      </div>
+      <div class="subject-map">
+        <div class="subject"><h3>國文</h3><p>閱讀理解、寫作能力</p></div>
+        <div class="subject"><h3>英文</h3><p>單字、文法、閱讀理解</p></div>
+        <div class="subject"><h3>數學</h3><p>基礎計算、應用與推理</p></div>
+        <div class="subject"><h3>社會</h3><p>歷史、地理、公民整合</p></div>
+        <div class="subject"><h3>自然</h3><p>物理、化學、生物、地科整合</p></div>
+      </div>
+    </section>
+
+    <section class="card" id="schools">
+      <div class="section-head">
+        <div>
+          <h2>高中四校目標圖</h2>
+          <p class="section-note">保留目標排序，但用學習環境來判斷適配性。</p>
+        </div>
+        <span class="mini-label">Target Schools</span>
+      </div>
+      <div class="school-grid">
+        <article class="school-card">
+          <div class="school-rank">1</div>
+          <h3>雄中科學班</h3>
+          <div class="tagline">數理資優、研究導向</div>
+          <div class="chips"><span class="chip">加深加廣</span><span class="chip">實驗密集</span><span class="chip">PBL</span><span class="chip">高刺激</span></div>
+          <div class="threshold">門檻：5A++ 或 5A+ 以上</div>
+        </article>
+        <article class="school-card">
+          <div class="school-rank">2</div>
+          <h3>高雄女中</h3>
+          <div class="tagline">基礎扎實、升學導向</div>
+          <div class="chips"><span class="chip">標準課程</span><span class="chip">講解＋練習</span><span class="chip">段考</span><span class="chip">穩定競爭</span></div>
+          <div class="threshold">門檻：約 5A25～30 點</div>
+        </article>
+        <article class="school-card">
+          <div class="school-rank">3</div>
+          <h3>高師大附中</h3>
+          <div class="tagline">自主學習、多元發展</div>
+          <div class="chips"><span class="chip">多元選修</span><span class="chip">討論式</span><span class="chip">理解導向</span><span class="chip">自由度高</span></div>
+          <div class="threshold">門檻：約 5A28～32 點</div>
+        </article>
+        <article class="school-card">
+          <div class="school-rank">4</div>
+          <h3>鳳山高中</h3>
+          <div class="tagline">穩定升學、均衡發展</div>
+          <div class="chips"><span class="chip">標準課程</span><span class="chip">部分選修</span><span class="chip">講解＋練習</span><span class="chip">壓力較適中</span></div>
+          <div class="threshold">門檻：約 5A20～25 點</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="card" id="private">
+      <div class="section-head">
+        <div>
+          <h2>私校評估卡</h2>
+          <p class="section-note">先用「管理節奏、升學導向、通勤」三個角度保留比較。</p>
+        </div>
+        <span class="mini-label">Private Schools</span>
+      </div>
+      <div class="private-grid">
+        <article class="private-card"><h3>道明國中／高中</h3><ul><li>私立，升學導向強</li><li>管理嚴謹、進度快</li><li>適合需要明確節奏者</li></ul><div class="commute">通勤約 30～40 分鐘</div></article>
+        <article class="private-card"><h3>中山國中／高中</h3><ul><li>公立，學風穩定</li><li>節奏較平均</li><li>需靠學生自我努力提升</li></ul><div class="commute">通勤約 20～30 分鐘</div></article>
+        <article class="private-card"><h3>明誠中學／高中</h3><ul><li>私立，升學與品格並重</li><li>課程安排完整</li><li>重視基礎與長期培養</li></ul><div class="commute">通勤約 30～40 分鐘</div></article>
+        <article class="private-card"><h3>復華中學／高中</h3><ul><li>私立，重視紀律與升學</li><li>課業要求明確</li><li>適合需要嚴格管理者</li></ul><div class="commute">通勤約 30～45 分鐘</div></article>
+      </div>
+    </section>
+
+    <section class="card" id="scores">
+      <div class="section-head">
+        <div>
+          <h2>會考等級與校內分數對照</h2>
+          <p class="section-note">保留 C、B、B+、B++、A、A+、A++ 分類，並把學校常見 80 幾分對應清楚。</p>
+        </div>
+        <span class="mini-label">Score System</span>
+      </div>
+
+      <h3 style="margin: 0 0 12px;">學校分數 × 會考等級對照</h3>
+      <div class="school-score-chart">
+        <div class="school-score-row"><div class="score-band">70 以下</div><div class="score-level low">C</div><div class="school-score-track"><div class="school-score-fill" style="width: 35%"></div></div><div class="score-desc">需補強</div></div>
+        <div class="school-score-row"><div class="score-band">70–74</div><div class="score-level low">B</div><div class="school-score-track"><div class="school-score-fill" style="width: 50%"></div></div><div class="score-desc">基礎</div></div>
+        <div class="school-score-row"><div class="score-band">75–79</div><div class="score-level mid">B+</div><div class="school-score-track"><div class="school-score-fill" style="width: 62%"></div></div><div class="score-desc">中等</div></div>
+        <div class="school-score-row"><div class="score-band">80–84</div><div class="score-level mid">B++</div><div class="school-score-track"><div class="school-score-fill" style="width: 74%"></div></div><div class="score-desc">中上</div></div>
+        <div class="school-score-row"><div class="score-band">85–89</div><div class="score-level">A</div><div class="school-score-track"><div class="school-score-fill" style="width: 84%"></div></div><div class="score-desc">穩定</div></div>
+        <div class="school-score-row"><div class="score-band">90–94</div><div class="score-level">A+</div><div class="school-score-track"><div class="school-score-fill" style="width: 92%"></div></div><div class="score-desc">優秀</div></div>
+        <div class="school-score-row"><div class="score-band">95 以上</div><div class="score-level">A++</div><div class="school-score-track"><div class="school-score-fill" style="width: 100%"></div></div><div class="score-desc">頂尖</div></div>
+      </div>
+      <p class="source-note">提醒：此表是 Ann AI 內部學習規劃用的簡化對照，正式會考等級仍以當年度國中教育會考官方標準為準。</p>
+
+      <div style="height: 22px"></div>
+      <h3 style="margin: 0 0 12px;">會考等級與積分階梯</h3>
+      <div class="score-ladder">
+        <div class="score-row"><div class="grade">A++</div><div class="points">7 分</div><div class="score-track"><div class="score-fill" style="width: 100%"></div></div><div class="score-range">95+</div></div>
+        <div class="score-row"><div class="grade">A+</div><div class="points">6 分</div><div class="score-track"><div class="score-fill" style="width: 88%"></div></div><div class="score-range">90–94</div></div>
+        <div class="score-row"><div class="grade">A</div><div class="points">5 分</div><div class="score-track"><div class="score-fill" style="width: 76%"></div></div><div class="score-range">85–89</div></div>
+        <div class="score-row"><div class="grade">B++</div><div class="points">4 分</div><div class="score-track"><div class="score-fill" style="width: 64%"></div></div><div class="score-range">80–84</div></div>
+        <div class="score-row"><div class="grade">B+</div><div class="points">3 分</div><div class="score-track"><div class="score-fill" style="width: 52%"></div></div><div class="score-range">75–79</div></div>
+        <div class="score-row"><div class="grade">B</div><div class="points">2 分</div><div class="score-track"><div class="score-fill" style="width: 40%"></div></div><div class="score-range">70–74</div></div>
+        <div class="score-row"><div class="grade">C</div><div class="points">1 分</div><div class="score-track"><div class="score-fill" style="width: 25%"></div></div><div class="score-range">70 以下</div></div>
+      </div>
+
+      <div style="height: 22px"></div>
+      <h3 style="margin: 0 0 12px;">常見積分組合</h3>
+      <div class="combo-chart">
+        <div class="combo-row"><strong>5A</strong><div class="combo-track"><div class="combo-fill" style="width: 71%">5×5</div></div><div class="combo-score">25</div></div>
+        <div class="combo-row"><strong>5A+</strong><div class="combo-track"><div class="combo-fill" style="width: 86%">5×6</div></div><div class="combo-score">30</div></div>
+        <div class="combo-row"><strong>5A++</strong><div class="combo-track"><div class="combo-fill" style="width: 100%">5×7</div></div><div class="combo-score">35</div></div>
+        <div class="combo-row"><strong>混合</strong><div class="combo-track"><div class="combo-fill" style="width: 89%">2A++ + 2A+ + 1A</div></div><div class="combo-score">31</div></div>
+      </div>
+    </section>
+
+    <section class="card" id="strategy">
+      <div class="section-head">
+        <div>
+          <h2>Ann 短期學習策略</h2>
+          <p class="section-note">目前策略重點是先恢復節奏與自信，再逐步拉高輸出。</p>
+        </div>
+        <span class="mini-label">Action Map</span>
+      </div>
+      <div class="strategy-map">
+        <div class="strategy"><div class="icon">🎯</div><h3>基本目標</h3><p>五科穩定達 A</p></div>
+        <div class="strategy"><div class="icon">🧮</div><h3>數理</h3><p>強化理解與應用能力</p></div>
+        <div class="strategy"><div class="icon">🔤</div><h3>英文</h3><p>以初級程度為基礎，加強單字與簡單閱讀理解</p></div>
+        <div class="strategy"><div class="icon">📚</div><h3>國文社會</h3><p>維持穩定輸出與閱讀能力</p></div>
+        <div class="strategy"><div class="icon">🧪</div><h3>科學能力</h3><p>增加實驗與探究學習</p></div>
+        <div class="strategy"><div class="icon">🌱</div><h3>心態</h3><p>建立固定學習節奏，逐步提升自信</p></div>
+      </div>
+    </section>
+
+    <div class="footer-note">Ann AI 的重點不是一次變強，而是每個月發現一點弱點、打敗一隻怪獸。</div>
+  </div>
+</body>
+</html>
