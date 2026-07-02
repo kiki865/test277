@@ -5,669 +5,174 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ann AI｜學習背景與目標整理</title>
   <style>
-    :root {
-      --bg: #f6f7fb;
-      --card: #ffffff;
-      --ink: #1f2937;
-      --muted: #6b7280;
-      --line: #e5e7eb;
-      --blue: #2f80ed;
-      --purple: #7c3aed;
-      --pink: #ec4899;
-      --orange: #f59e0b;
-      --green: #10b981;
-      --red: #ef4444;
-      --shadow: 0 18px 45px rgba(17, 24, 39, .08);
-      --radius: 24px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
-      color: var(--ink);
-      background:
-        radial-gradient(circle at top left, rgba(47,128,237,.16), transparent 30%),
-        radial-gradient(circle at top right, rgba(236,72,153,.12), transparent 34%),
-        var(--bg);
-      line-height: 1.65;
-    }
-
-    a { color: inherit; }
-
-    .page {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 28px 0 64px;
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 22px;
-    }
-
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      text-decoration: none;
-      background: rgba(255,255,255,.78);
-      border: 1px solid rgba(229,231,235,.9);
-      box-shadow: 0 8px 22px rgba(17,24,39,.06);
-      font-weight: 700;
-      color: #334155;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border-radius: 999px;
-      padding: 8px 12px;
-      font-size: 13px;
-      font-weight: 700;
-      background: rgba(124,58,237,.10);
-      color: #5b21b6;
-    }
-
-    header.hero {
-      position: relative;
-      overflow: hidden;
-      padding: 34px;
-      border-radius: 32px;
-      background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(255,255,255,.76));
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(255,255,255,.9);
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      right: -80px;
-      top: -110px;
-      width: 320px;
-      height: 320px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(47,128,237,.22), rgba(236,72,153,.18));
-      pointer-events: none;
-    }
-
-    h1 {
-      position: relative;
-      z-index: 1;
-      margin: 0 0 12px;
-      font-size: clamp(32px, 5vw, 54px);
-      line-height: 1.08;
-      letter-spacing: -.04em;
-    }
-
-    .hero p {
-      position: relative;
-      z-index: 1;
-      max-width: 780px;
-      margin: 0;
-      color: var(--muted);
-      font-size: 17px;
-    }
-
-    .quick-nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 20px 0 0;
-      position: relative;
-      z-index: 1;
-    }
-
-    .quick-nav a {
-      text-decoration: none;
-      background: #f8fafc;
-      border: 1px solid var(--line);
-      color: #334155;
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    section.card {
-      margin-top: 22px;
-      padding: 26px;
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.94);
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(255,255,255,.82);
-    }
-
-    .section-head {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 18px;
-    }
-
-    h2 {
-      margin: 0;
-      font-size: clamp(23px, 3vw, 32px);
-      letter-spacing: -.02em;
-    }
-
-    h3 { margin: 0 0 12px; }
-    .section-note { margin: 6px 0 0; color: var(--muted); }
-    .mini-label {
-      flex: 0 0 auto;
-      color: #475569;
-      background: #f1f5f9;
-      border: 1px solid #e2e8f0;
-      border-radius: 999px;
-      padding: 7px 10px;
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .grid { display: grid; gap: 14px; }
-    .grid.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-
-    .stat {
-      padding: 18px;
-      border-radius: 20px;
-      background: #f8fafc;
-      border: 1px solid #e5e7eb;
-    }
-    .stat .k { color: var(--muted); font-size: 14px; font-weight: 700; }
-    .stat .v { margin-top: 6px; font-size: 22px; font-weight: 900; letter-spacing: -.02em; }
-    .stat .s { margin-top: 5px; color: var(--muted); font-size: 14px; }
-
-    .rank-visual {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      align-items: stretch;
-    }
-
-    .rank-card {
-      border-radius: 22px;
-      padding: 18px;
-      background: linear-gradient(180deg, #fff, #f8fafc);
-      border: 1px solid #e5e7eb;
-    }
-
-    .rank-number {
-      font-size: 42px;
-      font-weight: 950;
-      letter-spacing: -.05em;
-      line-height: 1;
-    }
-    .rank-number.good { color: var(--blue); }
-    .rank-number.warn { color: var(--orange); }
-    .rank-caption { margin-top: 8px; color: var(--muted); font-weight: 700; }
-
-    .rank-bar {
-      position: relative;
-      height: 16px;
-      border-radius: 999px;
-      background: #e5e7eb;
-      margin-top: 18px;
-      overflow: hidden;
-    }
-    .rank-bar span {
-      display: block;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--blue), var(--purple));
-    }
-    .rank-bar.warn span { background: linear-gradient(90deg, var(--orange), var(--red)); }
-
-    .skill-bars { display: grid; gap: 14px; }
-    .skill-row {
-      display: grid;
-      grid-template-columns: 150px 1fr 52px;
-      gap: 12px;
-      align-items: center;
-    }
-    .skill-name { font-weight: 800; }
-    .bar-track, .score-track, .school-score-track {
-      height: 14px;
-      border-radius: 999px;
-      background: #e5e7eb;
-      overflow: hidden;
-    }
-    .bar-fill {
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--green), var(--blue));
-    }
-    .bar-fill.mid { background: linear-gradient(90deg, var(--orange), var(--pink)); }
-    .bar-value { color: var(--muted); font-weight: 800; font-size: 13px; text-align: right; }
-
-    .subject-map {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 12px;
-    }
-    .subject {
-      position: relative;
-      min-height: 140px;
-      padding: 18px;
-      border-radius: 22px;
-      border: 1px solid #e5e7eb;
-      background: linear-gradient(180deg, #fff, #f8fafc);
-      overflow: hidden;
-    }
-    .subject::after {
-      content: "";
-      position: absolute;
-      right: -26px;
-      bottom: -26px;
-      width: 86px;
-      height: 86px;
-      border-radius: 50%;
-      background: rgba(47,128,237,.10);
-    }
-    .subject h3 { margin: 0 0 8px; font-size: 20px; }
-    .subject p { margin: 0; color: var(--muted); font-size: 14px; }
-
-    .private-grid, .school-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-    }
-    .private-card, .school-card {
-      padding: 18px;
-      border-radius: 22px;
-      border: 1px solid #e5e7eb;
-      background: #fff;
-    }
-    .private-card h3 { margin: 0 0 8px; }
-    .private-card ul { margin: 12px 0 0; padding-left: 20px; color: var(--muted); }
-    .commute {
-      margin-top: 14px;
-      padding: 12px;
-      border-radius: 16px;
-      background: #f8fafc;
-      font-weight: 900;
-    }
-
-    .school-card {
-      position: relative;
-      min-height: 260px;
-      background: #f8fafc;
-    }
-    .school-rank {
-      position: absolute;
-      right: 16px;
-      top: 14px;
-      width: 38px;
-      height: 38px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      color: white;
-      font-weight: 950;
-      background: linear-gradient(135deg, var(--blue), var(--purple));
-    }
-    .school-card h3 { margin: 0 44px 10px 0; font-size: 21px; }
-    .school-card .tagline { color: var(--muted); font-weight: 700; min-height: 46px; }
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-    .chip {
-      padding: 6px 9px;
-      border-radius: 999px;
-      background: white;
-      border: 1px solid #e5e7eb;
-      font-size: 12px;
-      font-weight: 800;
-      color: #475569;
-    }
-    .threshold {
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px dashed #d1d5db;
-      color: #334155;
-      font-weight: 900;
-    }
-
-    .score-two-col {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: 18px;
-      align-items: start;
-    }
-    .score-panel {
-      padding: 18px;
-      border-radius: 22px;
-      background: #f8fafc;
-      border: 1px solid #e5e7eb;
-      min-width: 0;
-    }
-    .school-score-chart, .score-ladder { display: grid; gap: 10px; }
-    .school-score-row, .score-row {
-      display: grid;
-      gap: 12px;
-      align-items: center;
-      padding: 12px;
-      border-radius: 18px;
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-    }
-    .school-score-row { grid-template-columns: 96px 78px 1fr 82px; }
-    .score-row { grid-template-columns: 78px 72px 1fr 70px; }
-    .score-band, .grade { font-weight: 950; color: #111827; }
-    .grade { font-size: 18px; }
-    .points { color: var(--muted); font-weight: 800; }
-    .score-level {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      min-width: 58px;
-      border-radius: 999px;
-      padding: 5px 10px;
-      font-size: 14px;
-      font-weight: 950;
-      color: #fff;
-      background: linear-gradient(135deg, var(--blue), var(--purple));
-    }
-    .score-level.low { background: linear-gradient(135deg, #94a3b8, #64748b); }
-    .score-level.mid { background: linear-gradient(135deg, var(--orange), var(--pink)); }
-    .school-score-fill {
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--orange), var(--blue));
-    }
-    .score-fill {
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--green), var(--blue), var(--purple));
-    }
-    .score-range, .score-desc { text-align: right; font-weight: 800; color: #475569; }
-
-    .combo-section { margin-top: 22px; }
-    .combo-chart { display: grid; gap: 12px; }
-    .combo-row {
-      display: grid;
-      grid-template-columns: 95px 1fr 62px;
-      gap: 12px;
-      align-items: center;
-    }
-    .combo-row strong { font-size: 17px; }
-    .combo-track {
-      height: 26px;
-      border-radius: 999px;
-      background: #e5e7eb;
-      overflow: hidden;
-    }
-    .combo-fill {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding-right: 10px;
-      height: 100%;
-      color: white;
-      font-size: 13px;
-      font-weight: 900;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--blue), var(--purple));
-    }
-    .combo-score { text-align: right; font-weight: 900; }
-
-    .strategy-map {
-      display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: 10px;
-    }
-    .strategy {
-      padding: 16px;
-      border-radius: 20px;
-      background: #f8fafc;
-      border: 1px solid #e5e7eb;
-      min-height: 150px;
-    }
-    .strategy .icon { font-size: 26px; }
-    .strategy h3 { margin: 8px 0 6px; font-size: 17px; }
-    .strategy p { margin: 0; color: var(--muted); font-size: 14px; }
-
-    .footer-note {
-      margin-top: 24px;
-      padding: 18px;
-      border-radius: 22px;
-      background: #111827;
-      color: #fff;
-      text-align: center;
-      font-weight: 800;
-    }
-
-    .source-note { margin-top: 14px; color: var(--muted); font-size: 13px; }
-
-    @media (max-width: 980px) {
-      .grid.four, .rank-visual, .school-grid, .private-grid,
-      .subject-map, .strategy-map, .score-two-col {
-        grid-template-columns: 1fr 1fr;
-      }
-      .school-score-row, .score-row { grid-template-columns: 1fr; }
-      .score-range, .score-desc { text-align: left; }
-    }
-
-    @media (max-width: 640px) {
-      .page { width: min(100% - 22px, 1180px); padding-top: 16px; }
-      header.hero { padding: 24px; border-radius: 26px; }
-      section.card { padding: 18px; }
-      .topbar { align-items: flex-start; flex-direction: column; }
-      .grid.four, .rank-visual, .school-grid, .private-grid,
-      .subject-map, .strategy-map, .score-two-col {
-        grid-template-columns: 1fr;
-      }
-      .skill-row, .combo-row { grid-template-columns: 1fr; }
-      .bar-value, .combo-score { text-align: left; }
-    }
+    :root{--bg:#fff7ed;--card:#fff;--text:#263238;--muted:#637381;--primary:#ff7a59;--primary-dark:#c95640;--accent:#6c63ff;--line:#f0d8cd;--soft:#ffe7dc;--shadow:0 14px 34px rgba(38,50,56,.10);--radius:24px}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif;background:radial-gradient(circle at top left,#fff1e6 0,#fff7ed 34%,#f8fbff 100%);color:var(--text);line-height:1.65}header{padding:32px 18px 24px;background:linear-gradient(135deg,#ff7a59,#6c63ff);color:white;border-bottom-left-radius:34px;border-bottom-right-radius:34px;box-shadow:var(--shadow)}.wrap,main{max-width:1160px;margin:0 auto}.topbar{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.back{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;background:rgba(255,255,255,.18);color:#fff;text-decoration:none;font-weight:800;border:1px solid rgba(255,255,255,.28)}.brand{font-weight:900;letter-spacing:.02em}h1{margin:20px 0 8px;font-size:clamp(2rem,5vw,3.35rem);line-height:1.15}.subtitle{max-width:840px;margin:0;font-size:1.05rem;opacity:.95}main{margin-top:28px;margin-bottom:48px;padding:0 18px}.hero-card,section{background:rgba(255,255,255,.94);border:1px solid rgba(240,216,205,.82);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin-bottom:22px}.hero-card{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;border-left:8px solid var(--primary)}.badge{display:inline-block;padding:6px 12px;background:var(--soft);color:var(--primary-dark);border-radius:999px;font-weight:900;font-size:.9rem;margin-bottom:8px}h2{margin:0 0 16px;font-size:1.48rem;color:#1f2937;display:flex;gap:10px;align-items:center}h2 .icon{width:36px;height:36px;border-radius:13px;display:inline-grid;place-items:center;background:var(--soft);flex:0 0 auto}h3{margin:0 0 10px;font-size:1.08rem}p{margin:0 0 10px}.note{color:var(--muted);font-size:.94rem;margin-top:12px}.monster{font-size:3rem;filter:drop-shadow(0 8px 18px rgba(0,0,0,.12))}.grid{display:grid;gap:14px}.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}.grid-5{grid-template-columns:repeat(5,minmax(0,1fr))}.mini-card,.metric,.chart-card{background:#fff;border:1px solid #f2e7e1;border-radius:18px;padding:16px;min-height:100%}.metric{background:linear-gradient(180deg,#fff,#fffaf7)}.metric .label{color:var(--muted);font-size:.9rem}.metric .value{font-size:1.3rem;font-weight:950;color:#1f2937}.metric .hint{color:var(--muted);font-size:.88rem}.slope-chart{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;margin-top:8px}.rank-dot{width:72px;height:72px;border-radius:22px;display:grid;place-items:center;font-weight:950;color:#fff;background:linear-gradient(135deg,var(--accent),var(--primary));text-align:center;line-height:1.15;box-shadow:0 10px 24px rgba(108,99,255,.18)}.rank-dot small{display:block;font-size:.72rem;font-weight:700;opacity:.9}.slope-line{height:84px;position:relative}.slope-line:before{content:"";position:absolute;left:0;right:0;top:50%;height:6px;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--primary));transform:rotate(10deg);opacity:.88}.alert-pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:#fff7ed;color:#9a3412;font-weight:800;font-size:.92rem;margin-top:10px}.subject-card{border-radius:18px;padding:16px;background:#fff;border:1px solid #f2e7e1}.subject-card strong{display:block;font-size:1.08rem;margin-bottom:6px}.subject-card span{color:var(--muted);font-size:.94rem}.summary-bands{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}.band-card{background:#fff7ed;border:1px solid #fed7aa;border-radius:18px;padding:15px}.band-card strong{display:block;font-size:1.05rem;color:#9a3412}.band-card span{color:#7c2d12;font-size:.92rem}.table-wrap{overflow-x:auto;border:1px solid #f2e7e1;border-radius:18px;background:#fff}.rank-table,.comparison-table{width:100%;border-collapse:collapse;min-width:1180px}.comparison-table{min-width:980px}th,td{padding:12px 13px;border-bottom:1px solid #f2e7e1;text-align:left;vertical-align:top}th{position:sticky;top:0;background:#fff7ed;color:#7c2d12;font-weight:950;z-index:1}td:first-child,th:first-child{font-weight:900}.rank-badge,.exam-chip,.score-chip,.cred,.tag{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:4px 9px;font-weight:900;font-size:.82rem;white-space:nowrap}.rank-badge{background:#ff7a59;color:white;min-width:30px}.exam-chip{background:#eef2ff;color:#4338ca}.score-chip{background:#ecfdf5;color:#047857}.cred{background:#f8fafc;color:#475569}.tag{background:#eef2ff;color:#4338ca}.score-scale{display:grid;grid-template-columns:repeat(7,minmax(118px,1fr));gap:14px;overflow-x:auto;padding:4px 2px 10px}.score-band{min-width:118px;background:#fff;border:1px solid #f2e7e1;border-radius:22px;padding:18px 12px;text-align:center}.score-band.focus{border:3px solid #e9795f;background:#fffaf7}.score-band .range{font-weight:950;color:#6b7280;font-size:1.25rem}.score-band .level{font-weight:950;color:#c95640;font-size:2rem;margin:14px 0}.score-band .meaning{color:#6b7280;font-size:1.05rem}.current-range-note{display:inline-flex;align-items:center;gap:8px;margin:4px 0 16px;padding:9px 14px;border-radius:999px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;font-weight:950}.compare-note.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px}details summary{cursor:pointer;font-weight:900;color:var(--primary-dark);padding:8px 0}footer{max-width:1160px;margin:0 auto 44px;padding:0 18px}.footer-card{padding:18px 22px;border-radius:22px;background:#1f2937;color:white;text-align:center;font-weight:900}.top-nav{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}.top-nav a{padding:7px 11px;border-radius:999px;text-decoration:none;color:white;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.24);font-weight:800;font-size:.9rem}@media(max-width:980px){.grid-2,.grid-3,.grid-4,.grid-5,.summary-bands,.compare-note.three{grid-template-columns:1fr 1fr}.hero-card{grid-template-columns:1fr}.score-scale{grid-template-columns:repeat(4,minmax(118px,1fr))}}@media(max-width:640px){header{padding-top:22px}.grid-2,.grid-3,.grid-4,.grid-5,.summary-bands,.compare-note.three{grid-template-columns:1fr}section,.hero-card{padding:18px}.slope-chart{grid-template-columns:1fr}.slope-line{display:none}.score-scale{grid-template-columns:repeat(2,minmax(118px,1fr))}}
   </style>
 </head>
 <body>
-  <div class="page">
-    <div class="topbar">
-      <a class="back-link" href="index.html">← 回首頁</a>
-      <span class="badge">Ann AI 專案設定頁</span>
+  <header>
+    <div class="wrap">
+      <div class="topbar">
+        <a class="back" href="index.html">← 回首頁</a>
+        <div class="brand">Ann AI</div>
+      </div>
+      <h1>學習背景與目標整理</h1>
+      <p class="subtitle">這個頁面整理 Ann 目前的學習狀態、會考能力地圖、升學目標與學校分數對照。重點不是一次變強，而是把目標變清楚，讓 AI 可以每月幫 Ann 找出可以前進的一小步。</p>
+      <nav class="top-nav" aria-label="頁面導覽">
+        <a href="#profile">學習背景</a><a href="#exam">會考能力</a><a href="#rankings">高雄高中排名</a><a href="#comparison">四校比較</a><a href="#private">私校評估</a><a href="#scores">分數對照</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero-card" id="profile">
+      <div>
+        <span class="badge">Profile</span>
+        <h2>Ann 學習狀態儀表板</h2>
+        <p>Ann 是五福國中二年級學生，即將升國三。她理解力強、好奇心高，喜歡實驗、探究與實作學習，但不擅長長時間反覆練習。目前的任務是把學習目標變得清楚、有節奏，並透過 Ann AI 協助她回收弱點、穩定提升。</p>
+      </div>
+      <div class="monster">🤖</div>
     </div>
 
-    <header class="hero">
-      <h1>Ann AI｜學習背景與目標整理</h1>
-      <p>這個頁面是 Ann AI 的學習背景設定，用來幫助 AI、媽媽與 Ann 理解目前的學習狀態、升學目標與系統設計方向。重點不是一次變強，而是把學習變得比較清楚、比較好記、比較能持續。</p>
-      <nav class="quick-nav" aria-label="頁面導覽">
-        <a href="#profile">學習背景</a>
-        <a href="#exam">會考能力地圖</a>
-        <a href="#private">私校評估</a>
-        <a href="#schools">高中目標</a>
-        <a href="#scores">分數對照</a>
-        <a href="#strategy">短期策略</a>
-      </nav>
-    </header>
-
-    <section class="card" id="profile">
-      <div class="section-head">
-        <div>
-          <h2>學習狀態儀表板</h2>
-          <p class="section-note">用少量指標快速理解 Ann 目前狀態。</p>
-        </div>
-        <span class="mini-label">Profile</span>
+    <section>
+      <h2><span class="icon">📌</span>核心背景</h2>
+      <div class="grid grid-4">
+        <div class="metric"><span class="label">身分</span><span class="value">國二 → 國三</span><span class="hint">五福國中學生</span></div>
+        <div class="metric"><span class="label">未來考試</span><span class="value">國中會考</span><span class="hint">目前主要升學考試</span></div>
+        <div class="metric"><span class="label">班級</span><span class="value">資優班</span><span class="hint">約 30 人</span></div>
+        <div class="metric"><span class="label">英文程度</span><span class="value">全民英檢初級</span><span class="hint">需加強單字與閱讀</span></div>
       </div>
-
-      <div class="grid four">
-        <div class="stat"><div class="k">身分</div><div class="v">國二 → 國三</div><div class="s">五福國中學生</div></div>
-        <div class="stat"><div class="k">主要考試</div><div class="v">國中會考</div><div class="s">目前主要升學考試</div></div>
-        <div class="stat"><div class="k">班級</div><div class="v">資優班</div><div class="s">約 30 人</div></div>
-        <div class="stat"><div class="k">英文程度</div><div class="v">GEPT 初級</div><div class="s">先強化單字與閱讀</div></div>
-      </div>
-
-      <div style="height: 16px"></div>
-      <div class="rank-visual">
-        <div class="rank-card">
-          <div class="rank-number good">150</div>
-          <div class="rank-caption">過去校排名約 150 名</div>
-          <div class="rank-bar"><span style="width: 66%"></span></div>
-        </div>
-        <div class="rank-card">
-          <div class="rank-number warn">300</div>
-          <div class="rank-caption">目前校排名約 300 名</div>
-          <div class="rank-bar warn"><span style="width: 36%"></span></div>
-        </div>
-      </div>
-
-      <div style="height: 20px"></div>
-      <div class="skill-bars" aria-label="學習特質視覺化">
-        <div class="skill-row"><div class="skill-name">理解力</div><div class="bar-track"><div class="bar-fill" style="width: 88%"></div></div><div class="bar-value">高</div></div>
-        <div class="skill-row"><div class="skill-name">好奇心</div><div class="bar-track"><div class="bar-fill" style="width: 90%"></div></div><div class="bar-value">高</div></div>
-        <div class="skill-row"><div class="skill-name">實作興趣</div><div class="bar-track"><div class="bar-fill" style="width: 84%"></div></div><div class="bar-value">高</div></div>
-        <div class="skill-row"><div class="skill-name">反覆練習耐受度</div><div class="bar-track"><div class="bar-fill mid" style="width: 38%"></div></div><div class="bar-value">低</div></div>
-        <div class="skill-row"><div class="skill-name">目前學習動機</div><div class="bar-track"><div class="bar-fill mid" style="width: 42%"></div></div><div class="bar-value">下降</div></div>
-      </div>
-    </section>
-
-    <section class="card" id="exam">
-      <div class="section-head">
-        <div>
-          <h2>國中會考能力地圖</h2>
-          <p class="section-note">把五科轉成能力地圖，方便 AI 後續產生任務。</p>
-        </div>
-        <span class="mini-label">Exam Map</span>
-      </div>
-      <div class="subject-map">
-        <div class="subject"><h3>國文</h3><p>閱讀理解、寫作能力</p></div>
-        <div class="subject"><h3>英文</h3><p>單字、文法、閱讀理解</p></div>
-        <div class="subject"><h3>數學</h3><p>基礎計算、應用與推理</p></div>
-        <div class="subject"><h3>社會</h3><p>歷史、地理、公民整合</p></div>
-        <div class="subject"><h3>自然</h3><p>物理、化學、生物、地科整合</p></div>
-      </div>
-    </section>
-
-    <section class="card" id="private">
-      <div class="section-head">
-        <div>
-          <h2>私校評估卡</h2>
-          <p class="section-note">先用「管理節奏、升學導向、通勤」三個角度保留比較。</p>
-        </div>
-        <span class="mini-label">Private Schools</span>
-      </div>
-      <div class="private-grid">
-        <article class="private-card"><h3>道明國中／高中</h3><ul><li>私立，升學導向強</li><li>管理嚴謹、進度快</li><li>適合需要明確節奏者</li></ul><div class="commute">通勤約 30～40 分鐘</div></article>
-        <article class="private-card"><h3>中山國中／高中</h3><ul><li>公立，學風穩定</li><li>節奏較平均</li><li>需靠學生自我努力提升</li></ul><div class="commute">通勤約 20～30 分鐘</div></article>
-        <article class="private-card"><h3>明誠中學／高中</h3><ul><li>私立，升學與品格並重</li><li>課程安排完整</li><li>重視基礎與長期培養</li></ul><div class="commute">通勤約 30～40 分鐘</div></article>
-        <article class="private-card"><h3>復華中學／高中</h3><ul><li>私立，重視紀律與升學</li><li>課業要求明確</li><li>適合需要嚴格管理者</li></ul><div class="commute">通勤約 30～45 分鐘</div></article>
-      </div>
-    </section>
-
-    <section class="card" id="schools">
-      <div class="section-head">
-        <div>
-          <h2>高中四校目標圖</h2>
-          <p class="section-note">保留目標排序，但用學習環境來判斷適配性。</p>
-        </div>
-        <span class="mini-label">Target Schools</span>
-      </div>
-      <div class="school-grid">
-        <article class="school-card">
-          <div class="school-rank">1</div>
-          <h3>雄中科學班</h3>
-          <div class="tagline">數理資優、研究導向</div>
-          <div class="chips"><span class="chip">加深加廣</span><span class="chip">實驗密集</span><span class="chip">PBL</span><span class="chip">高刺激</span></div>
-          <div class="threshold">門檻：5A++ 或 5A+ 以上</div>
-        </article>
-        <article class="school-card">
-          <div class="school-rank">2</div>
-          <h3>高雄女中</h3>
-          <div class="tagline">基礎扎實、升學導向</div>
-          <div class="chips"><span class="chip">標準課程</span><span class="chip">講解＋練習</span><span class="chip">段考</span><span class="chip">穩定競爭</span></div>
-          <div class="threshold">門檻：約 5A25～30 點</div>
-        </article>
-        <article class="school-card">
-          <div class="school-rank">3</div>
-          <h3>高師大附中</h3>
-          <div class="tagline">自主學習、多元發展</div>
-          <div class="chips"><span class="chip">多元選修</span><span class="chip">討論式</span><span class="chip">理解導向</span><span class="chip">自由度高</span></div>
-          <div class="threshold">門檻：約 5A28～32 點</div>
-        </article>
-        <article class="school-card">
-          <div class="school-rank">4</div>
-          <h3>鳳山高中</h3>
-          <div class="tagline">穩定升學、均衡發展</div>
-          <div class="chips"><span class="chip">標準課程</span><span class="chip">部分選修</span><span class="chip">講解＋練習</span><span class="chip">壓力較適中</span></div>
-          <div class="threshold">門檻：約 5A20～25 點</div>
-        </article>
-      </div>
-    </section>
-
-    <section class="card" id="scores">
-      <div class="section-head">
-        <div>
-          <h2>會考分數與積分系統</h2>
-          <p class="section-note">保留 C、B、B+、B++、A、A+、A++ 分類，並把校內分數與會考積分並排比較。</p>
-        </div>
-        <span class="mini-label">Score System</span>
-      </div>
-
-      <div class="score-two-col">
-        <div class="score-panel">
-          <h3>會考等級與校內分數對照</h3>
-          <div class="school-score-chart">
-            <div class="school-score-row"><div class="score-band">70 以下</div><div class="score-level low">C</div><div class="school-score-track"><div class="school-score-fill" style="width: 35%"></div></div><div class="score-desc">需補強</div></div>
-            <div class="school-score-row"><div class="score-band">70–74</div><div class="score-level low">B</div><div class="school-score-track"><div class="school-score-fill" style="width: 50%"></div></div><div class="score-desc">基礎</div></div>
-            <div class="school-score-row"><div class="score-band">75–79</div><div class="score-level mid">B+</div><div class="school-score-track"><div class="school-score-fill" style="width: 62%"></div></div><div class="score-desc">中等</div></div>
-            <div class="school-score-row"><div class="score-band">80–84</div><div class="score-level mid">B++</div><div class="school-score-track"><div class="school-score-fill" style="width: 74%"></div></div><div class="score-desc">中上</div></div>
-            <div class="school-score-row"><div class="score-band">85–89</div><div class="score-level">A</div><div class="school-score-track"><div class="school-score-fill" style="width: 84%"></div></div><div class="score-desc">穩定</div></div>
-            <div class="school-score-row"><div class="score-band">90–94</div><div class="score-level">A+</div><div class="school-score-track"><div class="school-score-fill" style="width: 92%"></div></div><div class="score-desc">優秀</div></div>
-            <div class="school-score-row"><div class="score-band">95 以上</div><div class="score-level">A++</div><div class="school-score-track"><div class="school-score-fill" style="width: 100%"></div></div><div class="score-desc">頂尖</div></div>
+      <div class="grid grid-2" style="margin-top:14px">
+        <div class="chart-card">
+          <h3>校排名變化</h3>
+          <div class="slope-chart">
+            <div class="rank-dot"><small>過去</small>150</div><div class="slope-line"></div><div class="rank-dot"><small>目前</small>300</div>
           </div>
-          <p class="source-note">提醒：此表是 Ann AI 內部學習規劃用的簡化對照，正式會考等級仍以當年度國中教育會考官方標準為準。</p>
+          <div class="alert-pill">目前重點：先恢復穩定節奏與自信</div>
         </div>
-
-        <div class="score-panel">
-          <h3>會考等級與積分階梯</h3>
-          <div class="score-ladder">
-            <div class="score-row"><div class="grade">A++</div><div class="points">7 分</div><div class="score-track"><div class="score-fill" style="width: 100%"></div></div><div class="score-range">95+</div></div>
-            <div class="score-row"><div class="grade">A+</div><div class="points">6 分</div><div class="score-track"><div class="score-fill" style="width: 88%"></div></div><div class="score-range">90–94</div></div>
-            <div class="score-row"><div class="grade">A</div><div class="points">5 分</div><div class="score-track"><div class="score-fill" style="width: 76%"></div></div><div class="score-range">85–89</div></div>
-            <div class="score-row"><div class="grade">B++</div><div class="points">4 分</div><div class="score-track"><div class="score-fill" style="width: 64%"></div></div><div class="score-range">80–84</div></div>
-            <div class="score-row"><div class="grade">B+</div><div class="points">3 分</div><div class="score-track"><div class="score-fill" style="width: 52%"></div></div><div class="score-range">75–79</div></div>
-            <div class="score-row"><div class="grade">B</div><div class="points">2 分</div><div class="score-track"><div class="score-fill" style="width: 40%"></div></div><div class="score-range">70–74</div></div>
-            <div class="score-row"><div class="grade">C</div><div class="points">1 分</div><div class="score-track"><div class="score-fill" style="width: 25%"></div></div><div class="score-range">70 以下</div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="combo-section">
-        <h3>常見積分組合</h3>
-        <div class="combo-chart">
-          <div class="combo-row"><strong>5A</strong><div class="combo-track"><div class="combo-fill" style="width: 71%">5×5</div></div><div class="combo-score">25</div></div>
-          <div class="combo-row"><strong>5A+</strong><div class="combo-track"><div class="combo-fill" style="width: 86%">5×6</div></div><div class="combo-score">30</div></div>
-          <div class="combo-row"><strong>5A++</strong><div class="combo-track"><div class="combo-fill" style="width: 100%">5×7</div></div><div class="combo-score">35</div></div>
-          <div class="combo-row"><strong>混合</strong><div class="combo-track"><div class="combo-fill" style="width: 89%">2A++ + 2A+ + 1A</div></div><div class="combo-score">31</div></div>
+        <div class="chart-card">
+          <h3>學習特質</h3>
+          <p><strong>優勢：</strong>理解力強、好奇心高、喜歡實驗探究。</p>
+          <p><strong>挑戰：</strong>不擅長長時間反覆練習，學習動機減弱。</p>
+          <p><strong>AI 任務：</strong>把需要記憶與練習的內容，轉成短任務、錯題回收與圖像化整理。</p>
         </div>
       </div>
     </section>
 
-    <section class="card" id="strategy">
-      <div class="section-head">
-        <div>
-          <h2>Ann 短期學習策略</h2>
-          <p class="section-note">目前策略重點是先恢復節奏與自信，再逐步拉高輸出。</p>
-        </div>
-        <span class="mini-label">Action Map</span>
-      </div>
-      <div class="strategy-map">
-        <div class="strategy"><div class="icon">🎯</div><h3>基本目標</h3><p>五科穩定達 A</p></div>
-        <div class="strategy"><div class="icon">🧮</div><h3>數理</h3><p>強化理解與應用能力</p></div>
-        <div class="strategy"><div class="icon">🔤</div><h3>英文</h3><p>以初級程度為基礎，加強單字與簡單閱讀理解</p></div>
-        <div class="strategy"><div class="icon">📚</div><h3>國文社會</h3><p>維持穩定輸出與閱讀能力</p></div>
-        <div class="strategy"><div class="icon">🧪</div><h3>科學能力</h3><p>增加實驗與探究學習</p></div>
-        <div class="strategy"><div class="icon">🌱</div><h3>心態</h3><p>建立固定學習節奏，逐步提升自信</p></div>
+    <section id="exam">
+      <h2><span class="icon">🧠</span>國中會考能力地圖</h2>
+      <div class="grid grid-5">
+        <div class="subject-card"><strong>國文</strong><span>閱讀理解、寫作能力</span></div>
+        <div class="subject-card"><strong>英文</strong><span>單字、文法、閱讀理解</span></div>
+        <div class="subject-card"><strong>數學</strong><span>基礎計算、應用與推理</span></div>
+        <div class="subject-card"><strong>社會</strong><span>歷史、地理、公民整合</span></div>
+        <div class="subject-card"><strong>自然</strong><span>物理、化學、生物、地科整合</span></div>
       </div>
     </section>
 
-    <div class="footer-note">Ann AI 的重點不是一次變強，而是每個月發現一點弱點、打敗一隻怪獸。</div>
-  </div>
+    <section id="rankings">
+      <h2><span class="icon">🏫</span>高雄地區高中排名圖</h2>
+      <p>以 2025 年高雄地區高中前 20 名競爭度與會考門檻做成帶狀參考，供 Ann AI 做升學目標與學習區間判斷。</p>
+      <div class="summary-bands">
+        <div class="band-card"><strong>30 分帶</strong><span>高雄中學、高雄女中、高師大附中</span></div>
+        <div class="band-card"><strong>28–26 分帶</strong><span>鳳山高中、新莊高中、鳳新高中</span></div>
+        <div class="band-card"><strong>24–22 分帶</strong><span>瑞祥高中、新興高中、中山大學附中、中正高中、三民高中</span></div>
+        <div class="band-card"><strong>20 分帶以下</strong><span>前鎮、福誠、中山、文山、左營、小港、岡山、楠梓、鼓山</span></div>
+      </div>
+      <div class="table-wrap">
+        <table class="rank-table">
+          <thead><tr><th>排名</th><th>校名</th><th>2025 競爭度依據</th><th>2025 錄取門檻</th><th>會考等級門檻</th><th>對應校內分數區間</th><th>資料年份</th><th>來源與可信度</th><th>備註</th></tr></thead>
+          <tbody>
+            <tr><td><span class="rank-badge">1</span></td><td>高雄中學</td><td>114 錄取排序表</td><td>30 分 / 29 點</td><td><span class="exam-chip">5A</span></td><td><span class="score-chip">90–94+</span></td><td>2025</td><td><span class="cred">聯合報＋TKB＋得勝者／中</span></td><td>媒體與兩家整理一致，屬最穩定的 30 分帶</td></tr>
+            <tr><td><span class="rank-badge">2</span></td><td>高雄女中</td><td>114 錄取排序表</td><td>第三方多作 30 分 / 28 點；媒體見 28 分 / 30 點邊緣案例</td><td><span class="exam-chip">5A 帶；邊緣可至 4A1B 高標</span></td><td><span class="score-chip">89–94</span></td><td>2025</td><td><span class="cred">聯合報＋TKB＋得勝者／低</span></td><td>來源有衝突，顯示邊緣錄取受總積分與同分比序影響</td></tr>
+            <tr><td><span class="rank-badge">3</span></td><td>高師大附中</td><td>114 錄取排序表</td><td>30 分 / 28 點</td><td><span class="exam-chip">5A</span></td><td><span class="score-chip">90–94+</span></td><td>2025</td><td><span class="cred">TKB＋得勝者／中</span></td><td>無主流媒體二次佐證，但兩家彙整一致</td></tr>
+            <tr><td><span class="rank-badge">4</span></td><td>鳳山高中</td><td>114 錄取排序表</td><td>28 分 / 28 點</td><td><span class="exam-chip">4A1B</span></td><td><span class="score-chip">85–89</span></td><td>2025</td><td><span class="cred">TKB＋得勝者／中</span></td><td>穩定落在高雄區第二梯隊最前端</td></tr>
+            <tr><td><span class="rank-badge">5</span></td><td>新莊高中</td><td>114 錄取排序表</td><td>26 分 / 23 點</td><td><span class="exam-chip">3A2B</span></td><td><span class="score-chip">80–84</span></td><td>2025</td><td><span class="cred">TKB＋得勝者／中</span></td><td>與鳳新同帶，積點也一致</td></tr>
+            <tr><td><span class="rank-badge">6</span></td><td>鳳新高中</td><td>114 錄取排序表</td><td>26 分 / 23 點</td><td><span class="exam-chip">3A2B</span></td><td><span class="score-chip">80–84</span></td><td>2025</td><td><span class="cred">TKB＋得勝者／中</span></td><td>鳳山生活圈代表校之一</td></tr>
+            <tr><td><span class="rank-badge">7</span></td><td>瑞祥高中</td><td>114 錄取排序表</td><td>24 分 / 22 點</td><td><span class="exam-chip">2A3B</span></td><td><span class="score-chip">75–79</span></td><td>2025</td><td><span class="cred">TKB＋得勝者／中</span></td><td>24 分帶中積點最高</td></tr>
+            <tr><td><span class="rank-badge">8</span></td><td>新興高中</td><td>114 錄取排序表</td><td>24 分 / 20 點</td><td><span class="exam-chip">2A3B</span></td><td><span class="score-chip">75–79</span></td><td>2025</td><td><span class="cred">TKB＋得勝者／中</span></td><td>與中山附中同分帶，但積點較高</td></tr>
+            <tr><td><span class="rank-badge">9</span></td><td>中山大學附中</td><td>114 錄取排序表</td><td>24 分 / 18 點</td><td><span class="exam-chip">2A3B</span></td><td><span class="score-chip">75–79</span></td><td>2025</td><td><span class="cred">TKB＋得勝者／中</span></td><td>官方簡章校名為「國立中山大學附屬國光高級中學」</td></tr>
+            <tr><td><span class="rank-badge">10</span></td><td>中正高中</td><td>114 錄取排序表</td><td>22 分 / 23 點</td><td><span class="exam-chip">1A4B</span></td><td><span class="score-chip">70–74</span></td><td>2025</td><td><span class="cred">TKB＋得勝者／中</span></td><td>22 分帶中積點最高</td></tr>
+            <tr><td><span class="rank-badge">11</span></td><td>三民高中</td><td>114 錄取排序表</td><td>22 分 / 18 點</td><td><span class="exam-chip">1A4B</span></td><td><span class="score-chip">70–74</span></td><td>2025</td><td><span class="cred">TKB＋得勝者／中</span></td><td>與中正同分帶，積點較低</td></tr>
+            <tr><td><span class="rank-badge">12</span></td><td>前鎮高中</td><td>114 錄取排序表</td><td>20 分 / 20 點</td><td><span class="exam-chip">5B</span></td><td><span class="score-chip">65–69</span></td><td>2025</td><td><span class="cred">TKB＋得勝者／中</span></td><td>20 分帶中積點最高</td></tr>
+            <tr><td><span class="rank-badge">13</span></td><td>福誠高中</td><td>114 錄取排序表</td><td>20 分 / 18 點</td><td><span class="exam-chip">5B</span></td><td><span class="score-chip">65–69</span></td><td>2025</td><td><span class="cred">TKB＋得勝者／中</span></td><td>與前鎮同區域生活圈，帶位相近</td></tr>
+            <tr><td><span class="rank-badge">14</span></td><td>中山高中</td><td>114 錄取排序表</td><td>20 分 / 17 點</td><td><span class="exam-chip">5B</span></td><td><span class="score-chip">65–69</span></td><td>2025</td><td><span class="cred">TKB＋得勝者／中</span></td><td>北高雄在地公立高中之一</td></tr>
+            <tr><td><span class="rank-badge">15</span></td><td>文山高中</td><td>114 錄取排序表</td><td>20 分 / 15 點</td><td><span class="exam-chip">5B</span></td><td><span class="score-chip">65–69</span></td><td>2025</td><td><span class="cred">TKB＋得勝者／中</span></td><td>與中山、左營同屬 20 分帶中段</td></tr>
+            <tr><td><span class="rank-badge">16</span></td><td>左營高中</td><td>114 錄取排序表</td><td>20 分 / 14 點</td><td><span class="exam-chip">5B</span></td><td><span class="score-chip">65–69</span></td><td>2025</td><td><span class="cred">TKB＋得勝者／中</span></td><td>官方簡章有列普通科招生名額</td></tr>
+            <tr><td><span class="rank-badge">17</span></td><td>小港高中</td><td>114 錄取排序表</td><td>20 分 / 11 點</td><td><span class="exam-chip">5B</span></td><td><span class="score-chip">65–69</span></td><td>2025</td><td><span class="cred">TKB＋得勝者／中</span></td><td>與岡山高中同積分、同積點</td></tr>
+            <tr><td><span class="rank-badge">18</span></td><td>岡山高中</td><td>114 錄取排序表</td><td>20 分 / 11 點</td><td><span class="exam-chip">5B</span></td><td><span class="score-chip">65–69</span></td><td>2025</td><td><span class="cred">TKB＋得勝者／中</span></td><td>與小港同帶；本報告依歷史序位置後</td></tr>
+            <tr><td><span class="rank-badge">19</span></td><td>楠梓高中</td><td>114 錄取排序表</td><td>18 分 / 9 點</td><td><span class="exam-chip">4B1C</span></td><td><span class="score-chip">60–64</span></td><td>2025</td><td><span class="cred">官方簡章＋TKB＋得勝者／低</span></td><td>官方簡章為「綜合高中」；TKB 寫成「橋梓高中」，應視為誤植</td></tr>
+            <tr><td><span class="rank-badge">20</span></td><td>鼓山高中</td><td>114 錄取排序表</td><td>16 分 / 未載</td><td><span class="exam-chip">3B2C</span></td><td><span class="score-chip">55–59</span></td><td>2025</td><td><span class="cred">TKB＋得勝者／低</span></td><td>與仁武高中同為切線校；以 113 歷史門檻作次序切分</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">提醒：此表是 Ann AI 內部升學討論用的「帶狀參考表」，不是教育局官方唯一排名。對應校內分數區間為粗略輔導用，正式志願仍需搭配當年度免試入學規則、多元發展、志願序與同分比序。</p>
+    </section>
+
+    <section id="comparison">
+      <h2><span class="icon">🧭</span>四校比較表</h2>
+      <p>此表保留原本四校比較文字，不縮減內容，作為 Ann 選校方向與學習環境判斷參考。</p>
+      <div class="table-wrap">
+        <table class="comparison-table" aria-label="雄中科學班、高雄女中、高師大附中、鳳山高中四校比較表">
+          <thead><tr><th>面向</th><th>雄中科學班</th><th>高雄女中</th><th>高師大附中</th><th>鳳山高中</th></tr></thead>
+          <tbody>
+            <tr><td>教學核心</td><td>數理資優、研究導向</td><td>基礎扎實、升學導向</td><td>自主學習、多元發展</td><td>穩定升學、均衡發展</td></tr>
+            <tr><td>課程設計</td><td>加深加廣、實驗密集</td><td>標準課程為主</td><td>多元選修</td><td>標準課程＋部分選修</td></tr>
+            <tr><td>學習方式</td><td>PBL、實驗討論</td><td>講解＋練習</td><td>討論式、理解導向</td><td>講解＋練習為主</td></tr>
+            <tr><td>評量方式</td><td>考試＋專題＋實作</td><td>段考、模擬考</td><td>多元評量</td><td>段考為主</td></tr>
+            <tr><td>學習環境</td><td>高競爭、高刺激</td><td>穩定競爭</td><td>自由度高</td><td>穩定、壓力較適中</td></tr>
+            <tr><td>適合 Ann 的原因</td><td>Ann 喜歡實驗、探究，若恢復數理自信，可作為挑戰目標</td><td>若會考成績拉回高標，是務實且優質的升學目標</td><td>適合自主探索，但需要強化自律與時間管理</td><td>若希望穩定建立信心，是安全且均衡的選項</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="private">
+      <h2><span class="icon">🏛️</span>私校評估：快速比較卡</h2>
+      <div class="grid grid-4">
+        <div class="mini-card"><h3>道明國中／高中</h3><p>升學導向強、管理嚴謹、考試密集。</p><span class="tag">明確節奏</span></div>
+        <div class="mini-card"><h3>中山國中／高中</h3><p>公立學校，學風穩定，需靠自我規劃提升。</p><span class="tag">自律導向</span></div>
+        <div class="mini-card"><h3>明誠中學／高中</h3><p>升學與品格並重，輔導制度較完整。</p><span class="tag">穩定管理</span></div>
+        <div class="mini-card"><h3>復華中學／高中</h3><p>重視紀律與升學，課業要求明確。</p><span class="tag">嚴格管理</span></div>
+      </div>
+    </section>
+
+    <section id="scores">
+      <h2><span class="icon">⭐</span>學校分數 × 會考等級對照</h2>
+      <p>這裡保留原本分類：C、B、B+、B++、A、A+、A++。Ann 目前大約落在 <strong>「B+ 到 A」</strong> 這個區間，重點觀察 75–79 的 B+、80–84 的 B++ 與 85–89 的 A。</p>
+      <div class="current-range-note">目前 Ann 觀察區間：B+ ～ A</div>
+      <div class="score-scale" aria-label="學校分數與等級分類對照">
+        <div class="score-band"><div class="range">70 以下</div><div class="level">C</div><div class="meaning">需補強</div></div>
+        <div class="score-band"><div class="range">70–74</div><div class="level">B</div><div class="meaning">基礎</div></div>
+        <div class="score-band focus"><div class="range">75–79</div><div class="level">B+</div><div class="meaning">中等</div></div>
+        <div class="score-band focus"><div class="range">80–84</div><div class="level">B++</div><div class="meaning">中上</div></div>
+        <div class="score-band focus"><div class="range">85–89</div><div class="level">A</div><div class="meaning">穩定</div></div>
+        <div class="score-band"><div class="range">90–94</div><div class="level">A+</div><div class="meaning">優秀</div></div>
+        <div class="score-band"><div class="range">95 以上</div><div class="level">A++</div><div class="meaning">頂尖</div></div>
+      </div>
+      <div class="compare-note three">
+        <div class="mini-card"><h3>75–79 分</h3><p><strong>對照：B+｜中等</strong></p><p>代表有基礎，但容易在單字記憶、文法選擇或閱讀細節上失分，需要先把基本題穩住。</p></div>
+        <div class="mini-card"><h3>80–84 分</h3><p><strong>對照：B++｜中上</strong></p><p>代表基礎已經有，但常見問題可能是單字記憶不穩、文法混淆、閱讀速度慢或粗心失分。</p></div>
+        <div class="mini-card"><h3>85–89 分</h3><p><strong>對照：A｜穩定</strong></p><p>代表已經接近會考主線目標。下一步不是增加很多題量，而是把錯題回收、把記憶型內容穩住。</p></div>
+      </div>
+      <p class="note">提醒：這是 Ann AI 內部學習用的「學校段考分數對照表」，方便抓學習區間；正式會考等級仍以國中教育會考實際量尺與當年度標準為準。</p>
+    </section>
+
+    <section>
+      <h2><span class="icon">📋</span>原始設定摘要</h2>
+      <details>
+        <summary>展開查看文字版設定</summary>
+        <div class="table-wrap">
+          <table><thead><tr><th>項目</th><th>內容</th></tr></thead><tbody>
+            <tr><td>補習狀況</td><td>英文、物理、化學、數學（愛因斯坦補習班＋其他英文補習班）</td></tr>
+            <tr><td>動機</td><td>喜歡實驗、探究與實作學習</td></tr>
+            <tr><td>英文程度</td><td>全民英檢初級</td></tr>
+            <tr><td>短期策略</td><td>五科穩定達 A，英文先加強單字與簡單閱讀理解。</td></tr>
+          </tbody></table>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <footer><div class="footer-card">Ann AI 的重點不是一次變強，而是每個月發現一點弱點、打敗一隻怪獸。</div></footer>
 </body>
 </html>
