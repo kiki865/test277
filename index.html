@@ -1,21 +1,195 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ann AI｜國中會考300單字互動練習</title>
-  <style>
-    body{font-family:system-ui,-apple-system,'Noto Sans TC',sans-serif;background:#f7f3ea;color:#222;margin:0;min-height:100vh;display:grid;place-items:center;line-height:1.7}
-    .card{max-width:760px;background:#fff;border-radius:24px;padding:36px;box-shadow:0 16px 40px #0002}
-    h1{margin-top:0;font-size:28px}.btn{display:inline-block;margin-top:18px;background:#2f6fed;color:#fff;text-decoration:none;padding:12px 18px;border-radius:12px;font-weight:700}.note{color:#666;font-size:14px}
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>國中會考 300 單字互動練習｜錯題延後重複＋英文發音</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="card">
-    <h1>Ann AI｜國中會考300單字互動練習</h1>
-    <p>最新版 HTML 互動練習頁已建立在 Google Drive：包含 300 個單字、60 句臺灣生活例句、錯題延後重複、錯題本與英文發音喇叭。</p>
-    <p><a class="btn" href="https://drive.google.com/file/d/15RCJaUs4_ipSDm_gSThxpXcVRZk30uEk/view?usp=drivesdk">開啟最新版互動練習頁</a></p>
-    <p class="note">正式檔案位置：Ann AI / 03_互動網頁 / index.html</p>
+  <header>
+    <section class="hero">
+      <div>
+        <span class="tag">國中會考 300 字 × 錯題延後重複 × 英文發音</span>
+        <h1>英文單字互動練習系統</h1>
+        <p>練習邏輯：答錯的單字或句子不會立刻重出，而是排到 <b>3 題之後</b> 再出現；單字旁的喇叭可以播放英文發音，幫助學生同步練聽力與口說。</p>
+        <div class="chips">
+          <span class="chip">300 單字</span>
+          <span class="chip">60 臺灣情境句</span>
+          <span class="chip">錯題本</span>
+          <span class="chip">英文發音</span>
+          <span class="chip">本機自動儲存</span>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3>今日練習紀錄</h3>
+        <div class="stats">
+          <div class="stat"><b id="statTotal">0</b><span>作答題數</span></div>
+          <div class="stat"><b id="statCorrect">0</b><span>答對</span></div>
+          <div class="stat"><b id="statWrong">0</b><span>答錯</span></div>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="accuracyBar"></div></div>
+        <p class="small" id="accuracyText">正確率：0%</p>
+      </div>
+    </section>
+  </header>
+
+  <nav>
+    <div class="tabs">
+      <button class="tab active" data-tab="wordQuiz">單字選擇練習</button>
+      <button class="tab" data-tab="sentenceQuiz">句子填空練習</button>
+      <button class="tab" data-tab="wrongBook">錯題本</button>
+      <button class="tab" data-tab="wordBank">300 字表</button>
+      <button class="tab" data-tab="teacherGuide">教學設計</button>
+    </div>
+  </nav>
+
+  <main>
+    <section id="wordQuiz" class="panel active">
+      <div class="grid">
+        <div class="card">
+          <h2>單字選擇練習</h2>
+          <p class="small">看英文選中文。答錯後，系統會把該字排到幾題後重複出現。</p>
+          <div class="quiz-question">
+            <div>
+              <div class="meta" id="wordMeta">Word #1</div>
+              <div class="word-line">
+                <div class="big-word" id="wordPrompt">able</div>
+                <button class="speak-btn" id="wordSpeakBtn" type="button" aria-label="播放單字發音">🔊 發音</button>
+              </div>
+              <div class="meta" id="wordForm">adj.</div>
+            </div>
+            <div class="options" id="wordOptions"></div>
+          </div>
+          <div class="feedback" id="wordFeedback">請選出正確中文。</div>
+          <div class="controls">
+            <button class="btn" id="nextWordBtn">下一題</button>
+            <button class="btn secondary" id="shuffleWordBtn">重新洗牌</button>
+            <button class="btn warn" id="resetProgressBtn">清除紀錄</button>
+          </div>
+        </div>
+        <div class="card">
+          <h2>練習設定</h2>
+          <div class="two">
+            <div>
+              <label class="small">答錯後延後幾題再出現</label>
+              <select id="delaySelect">
+                <option value="2">2 題後</option>
+                <option value="3" selected>3 題後</option>
+                <option value="5">5 題後</option>
+                <option value="8">8 題後</option>
+              </select>
+            </div>
+            <div>
+              <label class="small">練習範圍</label>
+              <select id="rangeSelect">
+                <option value="all" selected>全部 300 字</option>
+                <option value="1-100">1–100</option>
+                <option value="101-200">101–200</option>
+                <option value="201-300">201–300</option>
+                <option value="wrong">只練錯題</option>
+              </select>
+            </div>
+          </div>
+          <hr style="border:0;border-top:1px solid var(--line);margin:18px 0;">
+          <h3>為什麼不是立刻重複？</h3>
+          <p>答錯後立刻重複，很容易只是短暫記住答案。延後幾題再出現，學生必須重新提取記憶，效果比較接近「間隔複習」。</p>
+          <div class="chips">
+            <span class="chip">錯 1 次：3 題後再出</span>
+            <span class="chip">再錯：繼續排回</span>
+            <span class="chip">答對：保留進度</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sentenceQuiz" class="panel">
+      <div class="grid">
+        <div class="card">
+          <h2>句子填空練習</h2>
+          <p class="small">看臺灣情境句，補上英文空格。每題來自 60 個句子，每句含 5 個目標單字。</p>
+          <div class="quiz-question">
+            <div class="meta" id="sentMeta">Sentence #1</div>
+            <div class="sentence-box" id="sentPrompt"></div>
+            <p id="sentZh" style="margin-top:8px;color:#4b5563;"></p>
+            <div class="chips" id="sentWords"></div>
+            <div class="inline">
+              <input id="sentAnswer" type="text" placeholder="輸入空格單字，例如：able" autocomplete="off" />
+              <button class="btn green" id="checkSentenceBtn">檢查</button>
+            </div>
+          </div>
+          <div class="feedback" id="sentenceFeedback">請輸入空格單字。可按 Enter 檢查。</div>
+          <div class="controls">
+            <button class="btn" id="nextSentenceBtn">下一題</button>
+            <button class="btn secondary" id="shuffleSentenceBtn">句子重新洗牌</button>
+            <button class="speak-btn" id="blankSpeakBtn" type="button" disabled>🔊 聽正確單字</button>
+            <button class="speak-btn" id="sentenceSpeakBtn" type="button" disabled>🔊 聽完整句</button>
+          </div>
+        </div>
+        <div class="card">
+          <h2>60 句應用句設計</h2>
+          <p>每 5 個單字構成 1 句，全部 300 字剛好形成 60 句。句子以臺灣生活為主，例如捷運、夜市、颱風、學校、廟會、臺灣文化、交通與考試情境。</p>
+          <p class="small">學習建議：先做單字選擇練習，再做句子填空。句子練習能幫助學生把單字放回語境，而不是只背中文意思。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="wrongBook" class="panel">
+      <div class="card">
+        <h2>錯題本</h2>
+        <p class="small">這裡會列出作答錯誤過的單字。按「只練錯題」後，可以集中複習。</p>
+        <div class="controls">
+          <button class="btn" id="practiceWrongBtn">只練錯題</button>
+          <button class="btn secondary" id="clearWrongBtn">清空錯題本</button>
+        </div>
+        <div class="review-list" id="wrongList" style="margin-top:14px;"></div>
+      </div>
+    </section>
+
+    <section id="wordBank" class="panel">
+      <div class="card">
+        <h2>300 字表</h2>
+        <div class="inline" style="margin-bottom:12px;">
+          <input id="searchBox" type="search" placeholder="搜尋英文或中文，例如：environment / 環境" />
+          <button class="btn secondary" onclick="window.print()">列印</button>
+        </div>
+        <div class="word-list">
+          <table>
+            <thead><tr><th>No.</th><th>English / 發音</th><th>時態／詞性</th><th>中文</th></tr></thead>
+            <tbody id="wordTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="teacherGuide" class="panel">
+      <div class="grid">
+        <div class="card">
+          <h2>教學設計邏輯</h2>
+          <h3>1. 單字層：先辨認</h3>
+          <p>看英文選中文，降低初期挫折感，適合第一輪建立熟悉度。</p>
+          <h3>2. 句子層：再提取</h3>
+          <p>句子填空要求學生主動輸入單字，比選擇題更能檢查是否真的記得拼字。</p>
+          <h3>3. 錯題延後重複</h3>
+          <p>答錯題目會被排到幾題後再出現。學生需要隔一段時間後再次回想，能提升記憶穩定度。</p>
+          <h3>4. 發音層：看字也要聽音</h3>
+          <p>每個單字加上喇叭按鈕，讓學生在背中文意思時，同步建立英文聲音記憶。句子題則在作答後開放聽正確單字與完整句，避免提前洩漏答案。</p>
+        </div>
+        <div class="card">
+          <h2>建議使用方式</h2>
+          <p><b>每日 20 字：</b>選擇 1–100、101–200 或 201–300 分段練習。</p>
+          <p><b>第一輪：</b>只做單字選擇題，目標正確率 80%。</p>
+          <p><b>第二輪：</b>加入句子填空，開始練拼字與語感。</p>
+          <p><b>第三輪：</b>只練錯題本，直到錯題數下降。</p>
+          <p class="small">資料會存在目前瀏覽器的 localStorage；換電腦或清除瀏覽器資料後，紀錄會消失。</p>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer>Made for Taiwan Junior High English Review｜可離線開啟使用</footer>
+
+<script src="vocab-data.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
