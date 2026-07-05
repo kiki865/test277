@@ -1,6 +1,6 @@
-const START_DATE = new Date(2026, 6, 5);
+const START_DATE = new Date(2026, 6, 6); // 2026/07/06
 const TOTAL_DAYS = 15;
-const STORAGE_KEY = 'mosa_hsfz_github_v2';
+const STORAGE_KEY = 'mosa_hsfz_github_v3_20260706';
 const WORD_FALLBACK = {
   although: { zh: '雖然', form: 'conj.' },
   central: { zh: '中央的；主要的', form: 'adj.' },
@@ -16,6 +16,14 @@ let wordIndex = 13;
 let sentenceIndex = 2;
 let wordAnswered = false;
 let sentenceAnswered = false;
+
+function allWords() {
+  return typeof WORDS !== 'undefined' ? WORDS : [];
+}
+
+function allSentences() {
+  return typeof SENTENCES !== 'undefined' ? SENTENCES : [];
+}
 
 function defaultState() {
   return { days: {}, wrongWords: {}, fixedWords: {}, totalCorrect: 0, totalWrong: 0 };
@@ -107,12 +115,23 @@ function buildCalendar() {
   const cal = document.getElementById('calendar');
   if (!cal) return;
   cal.innerHTML = '';
+
   ['日', '一', '二', '三', '四', '五', '六'].forEach((w) => {
     const el = document.createElement('div');
     el.className = 'day-name';
     el.textContent = w;
     cal.appendChild(el);
   });
+
+  // 2026/07/06 是星期一，補一格空白讓 Day 1 對齊星期一。
+  for (let i = 0; i < START_DATE.getDay(); i++) {
+    const spacer = document.createElement('div');
+    spacer.className = 'calendar-spacer';
+    spacer.setAttribute('aria-hidden', 'true');
+    spacer.style.visibility = 'hidden';
+    spacer.style.minHeight = '58px';
+    cal.appendChild(spacer);
+  }
 
   const current = dayIndex();
   for (let i = 1; i <= TOTAL_DAYS; i++) {
@@ -123,7 +142,7 @@ function buildCalendar() {
     const [sa, sb] = sentenceRangeForDay(i);
     const el = document.createElement('div');
     el.className = `day${ds.completed ? ' done' : ''}${i === current && !ds.completed ? ' active' : ''}`;
-    el.innerHTML = `<div class="date"><span>7/${date.getDate()}</span><span>Day ${i}</span></div><div class="task">${wa}-${wb} 字<br>句子 ${sa}-${sb}</div><div class="check">${ds.completed ? '✓' : ''}</div>`;
+    el.innerHTML = `<div class="date"><span>${date.getMonth() + 1}/${date.getDate()}</span><span>Day ${i}</span></div><div class="task">${wa}-${wb} 字<br>句子 ${sa}-${sb}</div><div class="check">${ds.completed ? '✓' : ''}</div>`;
     cal.appendChild(el);
   }
 }
@@ -136,15 +155,15 @@ function cleanWord(word) {
 function getWordChoices(word) {
   if (word.no === 14) {
     return ['although', 'central', 'square', 'happen']
-      .map((en) => cleanWord((WORDS || []).find((w) => w.en === en) || { no: 0, en }))
+      .map((en) => cleanWord(allWords().find((w) => w.en === en) || { no: 0, en }))
       .filter(Boolean);
   }
-  const pool = (WORDS || []).filter((w) => w.no !== word.no);
+  const pool = allWords().filter((w) => w.no !== word.no);
   return shuffle([word, ...shuffle(pool).slice(0, 3)]).map(cleanWord);
 }
 
 function renderWord() {
-  currentWord = cleanWord((WORDS || [])[wordIndex] || { no: 14, en: 'although', form: 'conj.', zh: '雖然' });
+  currentWord = cleanWord(allWords()[wordIndex] || { no: 14, en: 'although', form: 'conj.', zh: '雖然' });
   wordAnswered = false;
   document.getElementById('wordMeta').textContent = `Word #${currentWord.no}`;
   document.getElementById('wordPrompt').textContent = currentWord.en;
@@ -187,7 +206,8 @@ function checkWord(btn, chosen) {
 }
 
 function nextWord() {
-  wordIndex = (wordIndex + 1) % (WORDS || []).length;
+  const words = allWords();
+  wordIndex = (wordIndex + 1) % (words.length || 1);
   renderWord();
 }
 
@@ -204,7 +224,7 @@ function sentenceFallback(sentence) {
 }
 
 function renderSentence() {
-  currentSentence = sentenceFallback((SENTENCES || [])[sentenceIndex] || {
+  currentSentence = sentenceFallback(allSentences()[sentenceIndex] || {
     no: 3,
     en: 'Although many people were against the plan, the class agreed to allow a small amount of time for discussion.',
     zh: '',
@@ -232,7 +252,7 @@ function renderSentence() {
 }
 
 function renderSentenceOptions() {
-  const choices = currentSentence.no === 3 ? ['schedule', 'double', 'similar', 'although'] : shuffle([currentBlank, ...shuffle((WORDS || []).map((w) => w.en).filter((w) => !currentSentence.words.includes(w))).slice(0, 3)]);
+  const choices = currentSentence.no === 3 ? ['schedule', 'double', 'similar', 'although'] : shuffle([currentBlank, ...shuffle(allWords().map((w) => w.en).filter((w) => !currentSentence.words.includes(w))).slice(0, 3)]);
   const box = document.getElementById('sentenceOptions');
   box.innerHTML = choices.map((choice, i) => `<div class="option sentence-choice" role="button" tabindex="0" data-word="${htmlEscape(choice)}"><span class="opt-num">${i + 1}</span><span class="option-word">${htmlEscape(choice)}</span>${speakerButton(choice, false)}</div>`).join('');
   box.querySelectorAll('.option').forEach((btn) => {
@@ -289,7 +309,8 @@ function checkSentence(btn, chosen) {
 }
 
 function nextSentence() {
-  sentenceIndex = (sentenceIndex + 1) % (SENTENCES || []).length;
+  const sentences = allSentences();
+  sentenceIndex = (sentenceIndex + 1) % (sentences.length || 1);
   renderSentence();
 }
 
