@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MOSA 怪獸挑戰師大附中</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <section class="garden" aria-label="MOSA header"></section>
+    <main class="main">
+      <aside class="profile">
+        <div class="profile-card-v2">
+          <div class="profile-head-v2">
+            <div class="avatar-shell"><div class="medal" id="medal" data-lv="1"></div></div>
+            <div class="level-copy">
+              <div class="level-big">Lv 1</div>
+              <div class="level-sub">挑戰新手</div>
+            </div>
+          </div>
+
+          <div class="field-label">挑戰者</div>
+          <div class="name"><input id="challengerName" class="challenger-name" type="text" value="Rider_01" aria-label="挑戰者名稱" /></div>
+
+          <div class="xp-row">
+            <span>經驗值 ⓘ</span>
+            <span><span id="xpNow">0</span> / 300 XP</span>
+          </div>
+          <div class="level-bar"><div id="levelBar"></div></div>
+
+          <div class="month-row">
+            <span>本月進度</span>
+            <span>說明 ⓘ</span>
+          </div>
+
+          <div class="stats-grid-v2">
+            <div class="stat-box"><small>挑戰天數</small><div class="stat-line"><strong id="statDays">0</strong><em>天</em></div></div>
+            <div class="stat-box"><small>正確率</small><div class="stat-line"><strong id="statAccuracy">100</strong><em>%</em></div></div>
+            <div class="stat-box"><small>總得分</small><div class="stat-line"><strong id="statScore">0</strong></div></div>
+          </div>
+
+          <div class="streak-row"><span>連續挑戰 🔥</span><strong><span id="streakDays">0</span> 天</strong></div>
+
+          <div class="phase-next-card">
+            <div class="lock-icon">🔒</div>
+            <div class="phase-copy">
+              <div class="phase-title">完成 Phase 1 即可解鎖</div>
+              <div class="phase-note">下一階段：文法挑戰</div>
+            </div>
+            <div class="phase-arrow">›</div>
+          </div>
+
+          <div class="hidden-metrics">
+            <span id="totalWords">0</span><span id="totalSentences">0</span>
+            <span id="goalDays">0/15</span><div id="goalDaysBar"></div><small id="goalDaysSmall"></small>
+            <span id="goalWords">0/1200</span><div id="goalWordsBar"></div><small id="goalWordsSmall"></small>
+          </div>
+        </div>
+      </aside>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div><h2>7 月挑戰月曆</h2><p>完成單字與句子挑戰後，系統才會自動打勾。</p></div>
+          <div class="reward"><b>本週獎勵金</b><strong id="rewardText">0 / 50 元</strong></div>
+        </div>
+        <div class="calendar" id="calendar"></div>
+
+        <div class="quiz-layout">
+          <div class="challenge-column">
+            <div class="challenge-head"><h3>👾 MOSA怪獸挑戰師大附中</h3><p>今日範圍：<span id="todayWordsRange">1-20</span></p><div class="progress"><div id="wordBar"></div></div><div class="quest-note"><span id="wordNote">0 / 300 字</span><span id="todayWordNote">今日 0 / 20</span></div></div>
+            <div class="quiz-card word-card">
+              <h3>單字挑戰</h3>
+              <div class="meta" id="wordMeta">Word #14</div>
+              <div class="word-line"><div class="big-word" id="wordPrompt">although</div><button class="speak-btn" id="wordSpeakBtn">🔊 發音</button></div>
+              <div class="meta" id="wordForm">conj.</div>
+              <div class="options" id="wordOptions"></div>
+              <div class="feedback" id="wordFeedback">選出正確中文。</div>
+              <div class="buttons"><button id="nextWordBtn" disabled>下一題</button></div>
+            </div>
+          </div>
+
+          <div class="challenge-column">
+            <div class="challenge-head fix-head"><h3>🛠️ 錯題修復</h3><p>答錯的字會先進入修復室，之後會自然再次遇到。</p><div class="progress"><div id="fixBar"></div></div><div class="quest-note"><span id="fixNote">0 / 10 字</span><span>修復中</span></div></div>
+            <div class="quiz-card sentence-card">
+              <h3>句子挑戰</h3>
+              <div class="meta" id="sentMeta">Sentence #3</div>
+              <div class="sentence-box" id="sentPrompt"></div>
+              <p id="sentZh" class="sent-zh-hidden"></p>
+              <div class="chips sent-words-hidden" id="sentWords"></div>
+              <div class="sentence-options" id="sentenceOptions"></div>
+              <div class="feedback" id="sentenceFeedback">選出空格中的正確單字。</div>
+              <div class="grammar-note sent-grammar-hidden" id="sentGrammar"></div>
+              <div class="buttons"><button id="nextSentenceBtn" disabled>下一句</button><button class="speak-btn" id="blankSpeakBtn" disabled>🔊 正確單字</button><button class="speak-btn" id="sentenceSpeakBtn" disabled>🔊 完整句</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="principles compact-principles"><h3>挑戰原則</h3><p>300 個單字結合在 60 個句子裡；一個句子有 5 個國中會考單詞；單字挑戰與句子挑戰都必須先作答，才能前進到下一題。</p></div>
+      </section>
+    </main>
+    <footer class="mosa-footer" aria-label="moto footer"></footer>
+  </div>
+  <script src="data/words.js"></script>
+  <script src="data/sentences.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
