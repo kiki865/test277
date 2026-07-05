@@ -339,7 +339,7 @@ function updateDashboard() {
   set('statDays', done);
   set('statScore', (totalWords * 5 + totalSentences * 20).toLocaleString('en-US'));
   const attempts = (state.totalCorrect || 0) + (state.totalWrong || 0);
-  set('statAccuracy', attempts ? Math.round(((state.totalCorrect || 0) / attempts) * 100) : 100);
+  set('statAccuracy', attempts ? Math.round(((state.totalCorrect || 0) / attempts) * 100) : 0);
   set('streakDays', done);
 }
 
