@@ -1,6 +1,6 @@
 const START_DATE = new Date(2026, 6, 5);
 const TOTAL_DAYS = 15;
-const STORAGE_KEY = 'mosa_hsfz_github_v1';
+const STORAGE_KEY = 'mosa_hsfz_github_v2';
 const WORD_FALLBACK = {
   although: { zh: '雖然', form: 'conj.' },
   central: { zh: '中央的；主要的', form: 'adj.' },
