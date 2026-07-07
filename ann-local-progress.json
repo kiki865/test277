@@ -1,0 +1,13 @@
+{
+  "name": "Ann",
+  "updatedAt": "2026-07-07T00:00:00.000Z",
+  "state": {
+    "days": {},
+    "wrongWords": {},
+    "wrongWordStats": {},
+    "errorEvents": [],
+    "fixedWords": {},
+    "totalCorrect": 0,
+    "totalWrong": 0
+  }
+}
